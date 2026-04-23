@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { getAllSlugs, getPost } from "@/lib/posts";
@@ -84,12 +84,13 @@ export default function BlogPostPage({ params }: PageProps) {
 
         <article className="py-16 sm:py-20">
           <div className="container max-w-2xl">
-            <Link
-              href="/blog"
-              className="inline-flex items-center gap-1 text-sm text-black/60 transition hover:text-black dark:text-white/60 dark:hover:text-white"
-            >
-              <span aria-hidden="true">←</span> All posts
-            </Link>
+            <Breadcrumbs
+              items={[
+                { label: "Home", href: "/" },
+                { label: "Blog", href: "/blog" },
+                { label: post.title },
+              ]}
+            />
 
             <header className="mt-6">
               <p className="flex items-center gap-2 text-xs text-black/60 dark:text-white/60">

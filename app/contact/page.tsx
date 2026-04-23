@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ContactForm from "@/components/ContactForm";
@@ -24,7 +25,13 @@ export default function ContactPage() {
       <main id="main">
         <section className="border-b border-black/5 py-16 sm:py-20 dark:border-white/10">
           <div className="container max-w-3xl">
-            <p className="text-sm font-medium uppercase tracking-wider text-brand-600 dark:text-brand-300">
+            <Breadcrumbs
+              items={[
+                { label: "Home", href: "/" },
+                { label: "Contact" },
+              ]}
+            />
+            <p className="mt-6 text-sm font-medium uppercase tracking-wider text-brand-600 dark:text-brand-300">
               Contact
             </p>
             <h1 className="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">
