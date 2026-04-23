@@ -1,0 +1,35 @@
+export type Post = {
+  slug: string;
+  title: string;
+  description: string;
+  date: string;
+  author: string;
+  readingTime: string;
+  body: string[];
+};
+
+export const posts: Post[] = [
+  {
+    slug: "shipping-production-ready-websites-with-ai",
+    title: "Shipping production-ready websites with AI",
+    description:
+      "How the AI Website Factory loop turns a rough brief into a deployable Next.js site — and keeps iterating after launch.",
+    date: "2026-04-20",
+    author: "AI Website Factory",
+    readingTime: "4 min read",
+    body: [
+      "Most AI-generated websites stop at the demo. A hero, a few sections, a screenshot — then a human has to wire up SEO, responsiveness, analytics, deploys, and everything else that actually makes a site production-grade. The gap between a generated page and a shippable product is where teams quietly burn their gains back.",
+      "We built AI Website Factory around a different idea: treat the AI as an autonomous senior engineer, not a component generator. The agent owns the full loop — plan, design, code, build, lint, test, ship — and it keeps iterating until every quality gate passes. If a build fails, the agent debugs it. If Lighthouse flags layout shift, the agent fixes it. If a nav link points nowhere, the agent builds the missing section.",
+      "The stack matters less than the discipline. Every site is Next.js with the App Router, TypeScript, and Tailwind, but the real product is the process: mobile-first layouts by default, semantic HTML, Open Graph metadata, sitemap and robots, JSON-LD structured data, accessible focus states, and reduced-motion support — checked in from the first commit.",
+      "The loop doesn't stop after launch. The agent continues to analyze the live site, propose improvements, open pull requests, run CI, and iterate. You review diffs instead of writing them. That's the shift: AI shouldn't just build your site once. It should be the team that maintains it.",
+    ],
+  },
+];
+
+export function getPost(slug: string): Post | undefined {
+  return posts.find((p) => p.slug === slug);
+}
+
+export function getAllSlugs(): string[] {
+  return posts.map((p) => p.slug);
+}
