@@ -50,13 +50,13 @@ export default function Hero() {
 
         <dl className="mt-14 grid w-full max-w-3xl grid-cols-2 gap-6 border-t border-black/5 pt-8 sm:grid-cols-4 dark:border-white/10">
           {[
-            { k: "99", label: "Lighthouse score" },
-            { k: "<2s", label: "Time to interactive" },
-            { k: "100%", label: "Responsive by default" },
-            { k: "24/7", label: "Autonomous shipping" },
+            { k: "Next.js 14", label: "App Router + TS" },
+            { k: "Static-first", label: "Prerendered by default" },
+            { k: "Edge OG", label: "Dynamic social cards" },
+            { k: "Mobile-first", label: "Responsive everywhere" },
           ].map((item) => (
             <div key={item.label} className="text-center">
-              <dt className="text-2xl font-semibold tracking-tight sm:text-3xl">
+              <dt className="text-lg font-semibold tracking-tight sm:text-xl">
                 {item.k}
               </dt>
               <dd className="mt-1 text-xs text-black/60 sm:text-sm dark:text-white/60">
