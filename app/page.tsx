@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
+import StatsBanner from "@/components/StatsBanner";
 import Features from "@/components/Features";
 import HowItWorks from "@/components/HowItWorks";
 import Pricing from "@/components/Pricing";
@@ -53,6 +54,7 @@ export default function HomePage() {
       <Header />
       <main id="main">
         <Hero />
+        <StatsBanner />
         <Features />
         <HowItWorks />
         <Pricing />
