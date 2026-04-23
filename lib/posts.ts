@@ -51,3 +51,10 @@ export function getPost(slug: string): Post | undefined {
 export function getAllSlugs(): string[] {
   return posts.map((p) => p.slug);
 }
+
+export function getRelatedPosts(slug: string, limit = 3): Post[] {
+  return [...posts]
+    .filter((p) => p.slug !== slug)
+    .sort((a, b) => (a.date < b.date ? 1 : -1))
+    .slice(0, limit);
+}
