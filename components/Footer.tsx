@@ -12,7 +12,7 @@ const footerLinks = [
   {
     heading: "Company",
     links: [
-      { label: "About", href: "#" },
+      { label: "About", href: "/about" },
       { label: "Blog", href: "/blog" },
       { label: "RSS", href: "/rss.xml" },
       { label: "Contact", href: "/contact" },
