@@ -5,17 +5,31 @@
 :root {
   --background: 255 255 255;
   --foreground: 10 15 28;
+  color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: 8 10 20;
-    --foreground: 240 244 255;
-  }
+html.dark {
+  --background: 8 10 20;
+  --foreground: 240 244 255;
+  color-scheme: dark;
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
 }
 
 body {

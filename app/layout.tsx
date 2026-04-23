@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
+import ThemeScript from "@/components/ThemeScript";
 import "./globals.css";
 
 const inter = Inter({
@@ -61,6 +62,35 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.svg",
   },
+  manifest: "/manifest.webmanifest",
+  category: "technology",
+  applicationName: "AI Website Factory",
+  formatDetection: {
+    telephone: false,
+    email: false,
+    address: false,
+  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${siteUrl}/#organization`,
+      name: "AI Website Factory",
+      url: siteUrl,
+      logo: `${siteUrl}/favicon.svg`,
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      url: siteUrl,
+      name: "AI Website Factory",
+      publisher: { "@id": `${siteUrl}/#organization` },
+      inLanguage: "en-US",
+    },
+  ],
 };
 
 export const viewport: Viewport = {
@@ -78,8 +108,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={inter.variable}>
-      <body className="min-h-screen font-sans">{children}</body>
+    <html lang="en" className={inter.variable} suppressHydrationWarning>
+      <head>
+        <ThemeScript />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
+      <body className="min-h-screen font-sans">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-brand-600 focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-white focus:shadow-lg focus:outline-none"
+        >
+          Skip to content
+        </a>
+        {children}
+      </body>
     </html>
   );
 }
