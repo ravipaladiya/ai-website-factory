@@ -47,6 +47,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "yearly",
       priority: 0.3,
     },
+    {
+      url: `${siteUrl}/status`,
+      lastModified: new Date(),
+      changeFrequency: "daily",
+      priority: 0.4,
+    },
   ];
 
   const postRoutes: MetadataRoute.Sitemap = getAllPosts().map((post) => ({
