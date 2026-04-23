@@ -1,5 +1,6 @@
 import Link from "next/link";
 import MobileMenu from "./MobileMenu";
+import ThemeToggle from "./ThemeToggle";
 
 const navLinks = [
   { href: "#features", label: "Features" },
@@ -40,6 +41,7 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
+          <ThemeToggle />
           <a
             href="#cta"
             className="hidden rounded-lg px-3 py-2 text-sm font-medium text-black/80 transition hover:text-black sm:inline-block dark:text-white/80 dark:hover:text-white"
