@@ -4,6 +4,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ReadingProgress from "@/components/ReadingProgress";
+import RelatedPosts from "@/components/RelatedPosts";
 import { getAllSlugs, getPost } from "@/lib/posts";
 
 type PageProps = { params: { slug: string } };
@@ -117,6 +118,8 @@ export default function BlogPostPage({ params }: PageProps) {
             <footer className="mt-12 border-t border-black/5 pt-6 text-sm text-black/60 dark:border-white/10 dark:text-white/60">
               Written by {post.author}
             </footer>
+
+            <RelatedPosts currentSlug={post.slug} />
           </div>
         </article>
       </main>
