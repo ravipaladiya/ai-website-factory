@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
+import Providers from "@/components/Providers";
 import ScrollToTop from "@/components/ScrollToTop";
 import ThemeScript from "@/components/ThemeScript";
 import "./globals.css";
@@ -124,8 +125,10 @@ export default function RootLayout({
         >
           Skip to content
         </a>
-        {children}
-        <ScrollToTop />
+        <Providers>
+          {children}
+          <ScrollToTop />
+        </Providers>
       </body>
     </html>
   );
