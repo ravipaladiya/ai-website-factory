@@ -1,1 +1,10 @@
-
+{
+  "name": "ai-website",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "npx next dev",
+    "build": "npx next build",
+    "start": "npx next start",
+    "lint": "npx next lint"
+  }
+}
