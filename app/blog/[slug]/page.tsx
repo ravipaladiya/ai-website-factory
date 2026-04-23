@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ReadingProgress from "@/components/ReadingProgress";
 import { getAllSlugs, getPost } from "@/lib/posts";
 
 type PageProps = { params: { slug: string } };
@@ -75,6 +76,7 @@ export default function BlogPostPage({ params }: PageProps) {
 
   return (
     <>
+      <ReadingProgress />
       <Header />
       <main id="main">
         <script
