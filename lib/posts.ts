@@ -1,60 +1,125 @@
-export type Post = {
-  slug: string;
+import fs from "node:fs";
+import path from "node:path";
+import matter from "gray-matter";
+
+export type PostFrontmatter = {
   title: string;
-  description: string;
   date: string;
   author: string;
-  readingTime: string;
-  body: string[];
+  tags: string[];
+  excerpt: string;
+  og_image?: string;
 };
 
-export const posts: Post[] = [
-  {
-    slug: "the-seo-checklist-for-ai-built-sites",
-    title: "The SEO checklist for AI-built sites",
-    description:
-      "The concrete set of signals — metadata, structured data, and performance — that every AI-generated site should ship with on day one.",
-    date: "2026-04-23",
-    author: "AI Website Factory",
-    readingTime: "5 min read",
-    body: [
-      "AI can design a beautiful hero in seconds, but the difference between a demo and a site that ranks is a long list of small, mechanical things. Skip any of them and you leak traffic quietly for months. The good news: once you automate the checklist, you never think about it again.",
-      "Start with the fundamentals. Every page needs a unique, intent-matching title and meta description, a canonical URL, Open Graph and Twitter card metadata, and a viewport tag. These aren't optional — they're what determines how your site appears in SERPs, Slack previews, and iMessage. An AI-built site should generate them by default, not as a post-launch task.",
-      "Then the structure. A single H1 per page, a logical heading hierarchy, semantic landmarks (header / nav / main / footer), and descriptive link text. Screen readers rely on the same cues that Google does. Respect the structure and you get accessibility and SEO in the same patch.",
-      "Add structured data. JSON-LD for Organization and WebSite in the layout gives crawlers a canonical brand identity. BreadcrumbList on deep pages, FAQPage where you have Q&A, Article on blog posts, and SoftwareApplication or Product where appropriate — each is a chance to show up in rich results.",
-      "Don't forget the boring wiring: sitemap.xml with lastModified timestamps, robots.txt, an RSS feed if you publish, and a manifest.webmanifest for PWA hints. Submit your sitemap to Google Search Console once and forget it.",
-      "Finally, performance. Core Web Vitals are a ranking factor and a user-experience one. Ship responsive images with width/height to prevent layout shift, lazy-load anything below the fold, preload critical fonts with font-display: swap, minimise third-party JavaScript, and cache aggressively. An AI-built site has no excuse to ship a low Lighthouse score — the defaults are the defaults.",
-      "None of this is glamorous. All of it compounds. An autonomous agent earns its keep by never skipping the unglamorous.",
-    ],
-  },
-  {
-    slug: "shipping-production-ready-websites-with-ai",
-    title: "Shipping production-ready websites with AI",
-    description:
-      "How the AI Website Factory loop turns a rough brief into a deployable Next.js site — and keeps iterating after launch.",
-    date: "2026-04-20",
-    author: "AI Website Factory",
-    readingTime: "4 min read",
-    body: [
-      "Most AI-generated websites stop at the demo. A hero, a few sections, a screenshot — then a human has to wire up SEO, responsiveness, analytics, deploys, and everything else that actually makes a site production-grade. The gap between a generated page and a shippable product is where teams quietly burn their gains back.",
-      "We built AI Website Factory around a different idea: treat the AI as an autonomous senior engineer, not a component generator. The agent owns the full loop — plan, design, code, build, lint, test, ship — and it keeps iterating until every quality gate passes. If a build fails, the agent debugs it. If Lighthouse flags layout shift, the agent fixes it. If a nav link points nowhere, the agent builds the missing section.",
-      "The stack matters less than the discipline. Every site is Next.js with the App Router, TypeScript, and Tailwind, but the real product is the process: mobile-first layouts by default, semantic HTML, Open Graph metadata, sitemap and robots, JSON-LD structured data, accessible focus states, and reduced-motion support — checked in from the first commit.",
-      "The loop doesn't stop after launch. The agent continues to analyze the live site, propose improvements, open pull requests, run CI, and iterate. You review diffs instead of writing them. That's the shift: AI shouldn't just build your site once. It should be the team that maintains it.",
-    ],
-  },
-];
+export type Post = PostFrontmatter & {
+  slug: string;
+  readingTime: string;
+  wordCount: number;
+  raw: string; // raw MDX source
+};
+
+export type Heading = { depth: 2 | 3; text: string; id: string };
+
+const blogDir = path.join(process.cwd(), "content", "blog");
+
+function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, "")
+    .trim()
+    .replace(/\s+/g, "-");
+}
+
+function readingTimeFor(raw: string): { text: string; words: number } {
+  const words = raw.trim().split(/\s+/).length;
+  const minutes = Math.max(1, Math.round(words / 220));
+  return { text: `${minutes} min read`, words };
+}
+
+function parsePost(slug: string, file: string): Post {
+  const raw = fs.readFileSync(file, "utf8");
+  const { data, content } = matter(raw);
+  const fm = data as Partial<PostFrontmatter>;
+  const rt = readingTimeFor(content);
+
+  if (!fm.title || !fm.date || !fm.author || !fm.excerpt) {
+    throw new Error(
+      `Post ${slug} is missing required frontmatter (title, date, author, excerpt).`,
+    );
+  }
+
+  return {
+    slug,
+    title: fm.title,
+    date: fm.date,
+    author: fm.author,
+    tags: Array.isArray(fm.tags) ? fm.tags : [],
+    excerpt: fm.excerpt,
+    og_image: fm.og_image,
+    readingTime: rt.text,
+    wordCount: rt.words,
+    raw: content,
+  };
+}
+
+export function getAllPosts(): Post[] {
+  if (!fs.existsSync(blogDir)) return [];
+  return fs
+    .readdirSync(blogDir)
+    .filter((f) => f.endsWith(".mdx"))
+    .map((f) => parsePost(f.replace(/\.mdx$/, ""), path.join(blogDir, f)))
+    .sort((a, b) => (a.date < b.date ? 1 : -1));
+}
 
 export function getPost(slug: string): Post | undefined {
-  return posts.find((p) => p.slug === slug);
+  return getAllPosts().find((p) => p.slug === slug);
 }
 
 export function getAllSlugs(): string[] {
-  return posts.map((p) => p.slug);
+  return getAllPosts().map((p) => p.slug);
 }
 
 export function getRelatedPosts(slug: string, limit = 3): Post[] {
-  return [...posts]
-    .filter((p) => p.slug !== slug)
-    .sort((a, b) => (a.date < b.date ? 1 : -1))
-    .slice(0, limit);
+  const current = getPost(slug);
+  if (!current) return [];
+  const others = getAllPosts().filter((p) => p.slug !== slug);
+  const byTagOverlap = others
+    .map((p) => ({
+      post: p,
+      score: p.tags.filter((t) => current.tags.includes(t)).length,
+    }))
+    .sort((a, b) => b.score - a.score || (a.post.date < b.post.date ? 1 : -1));
+  return byTagOverlap.slice(0, limit).map((x) => x.post);
+}
+
+export function getAllTags(): string[] {
+  return Array.from(
+    new Set(getAllPosts().flatMap((p) => p.tags)),
+  ).sort();
+}
+
+export function extractHeadings(raw: string): Heading[] {
+  const headings: Heading[] = [];
+  const lines = raw.split("\n");
+  let inFence = false;
+  for (const line of lines) {
+    if (line.startsWith("```")) inFence = !inFence;
+    if (inFence) continue;
+    const m = /^(#{2,3})\s+(.+?)\s*$/.exec(line);
+    if (!m) continue;
+    const depth = m[1].length as 2 | 3;
+    const text = m[2].replace(/[*_`]/g, "");
+    headings.push({ depth, text, id: slugify(text) });
+  }
+  return headings;
+}
+
+export function getPrevNext(slug: string): { prev?: Post; next?: Post } {
+  const posts = getAllPosts(); // already sorted newest-first
+  const idx = posts.findIndex((p) => p.slug === slug);
+  if (idx === -1) return {};
+  return {
+    next: idx > 0 ? posts[idx - 1] : undefined,
+    prev: idx < posts.length - 1 ? posts[idx + 1] : undefined,
+  };
 }

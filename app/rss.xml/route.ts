@@ -1,4 +1,4 @@
-import { posts } from "@/lib/posts";
+import { getAllPosts } from "@/lib/posts";
 
 const siteUrl = "https://ai-website-factory.example.com";
 
@@ -12,7 +12,7 @@ function escape(str: string) {
 }
 
 export async function GET() {
-  const sorted = [...posts].sort((a, b) => (a.date < b.date ? 1 : -1));
+  const sorted = getAllPosts();
   const lastBuild = sorted[0]?.date
     ? new Date(sorted[0].date).toUTCString()
     : new Date().toUTCString();
@@ -26,7 +26,7 @@ export async function GET() {
       <link>${url}</link>
       <guid isPermaLink="true">${url}</guid>
       <pubDate>${new Date(post.date).toUTCString()}</pubDate>
-      <description>${escape(post.description)}</description>
+      <description>${escape(post.excerpt)}</description>
       <author>noreply@ai-website-factory.example.com (${escape(post.author)})</author>
     </item>`;
     })

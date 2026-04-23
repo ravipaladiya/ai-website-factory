@@ -1,0 +1,20 @@
+---
+title: "Week of April 23, 2026"
+date: "2026-04-23"
+tags: ["shipping"]
+summary: "Live preview demo, pricing comparison table, 4-column footer, and the first pass of the MDX content engine."
+---
+
+## Added
+
+- **`/demo`** — a public live-preview page where you describe a site and watch the agent stream its build log before revealing a full-page iframe preview. Shareable via a unique URL.
+- **Pricing toggle** — monthly / annual billing toggle with a "Save 20%" badge and a 15-row comparison table across Starter / Studio / Enterprise.
+- **Stripe Checkout** — `/api/checkout` creates real subscription sessions via the Stripe Node SDK; gracefully 503s when env is missing.
+- **Current plan detection** — signed-in users see a "Current plan" label on their tier instead of the CTA button.
+- **Footer redesign** — full-width four-column layout (Product · Resources · Company · Community), inline newsletter, social icons, bottom bar with Privacy / Terms.
+- **MDX content engine** — blog posts and the changelog live in `content/*.mdx` with frontmatter, read time, tag filtering, and a generated table of contents.
+
+## Improved
+
+- Home page bundle back to statically prerendered (was briefly dynamic while current-plan detection was server-side).
+- Blog posts now show an estimated read time, a sidebar table of contents, prev/next navigation, and a Share-on-X button.

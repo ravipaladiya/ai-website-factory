@@ -44,7 +44,7 @@ export default function RelatedPosts({ currentSlug }: { currentSlug: string }) {
                 {post.title}
               </h3>
               <p className="mt-2 line-clamp-2 text-sm text-black/70 dark:text-white/70">
-                {post.description}
+                {post.excerpt}
               </p>
               <span className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-brand-600 dark:text-brand-300">
                 Read <span aria-hidden="true">→</span>
