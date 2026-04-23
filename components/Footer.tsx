@@ -14,6 +14,7 @@ const footerLinks = [
     links: [
       { label: "About", href: "#" },
       { label: "Blog", href: "/blog" },
+      { label: "RSS", href: "/rss.xml" },
       { label: "Contact", href: "/contact" },
     ],
   },
