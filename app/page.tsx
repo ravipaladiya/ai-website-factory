@@ -8,6 +8,7 @@ import Pricing from "@/components/Pricing";
 import RoiCalculator from "@/components/RoiCalculator";
 import FAQ from "@/components/FAQ";
 import Testimonials from "@/components/Testimonials";
+import CaseStudiesTeaser from "@/components/CaseStudiesTeaser";
 import CTA from "@/components/CTA";
 import Newsletter from "@/components/Newsletter";
 import Footer from "@/components/Footer";
@@ -72,6 +73,7 @@ export default function HomePage() {
         <Pricing />
         <RoiCalculator />
         <Testimonials />
+        <CaseStudiesTeaser />
         <FAQ />
         <CTA />
         <Newsletter />
