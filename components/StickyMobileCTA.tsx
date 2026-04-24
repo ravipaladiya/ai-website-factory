@@ -61,7 +61,10 @@ export default function StickyMobileCTA() {
       }
     >
       <div
-        className="mx-3 mb-3 flex items-center gap-3 rounded-2xl border border-black/10 bg-white/95 p-3 shadow-xl backdrop-blur dark:border-white/10 dark:bg-[#0b0e1a]/95"
+        className="mx-3 flex items-center gap-3 rounded-2xl border border-black/10 bg-white/95 p-3 shadow-xl backdrop-blur dark:border-white/10 dark:bg-[#0b0e1a]/95"
+        style={{
+          marginBottom: "calc(env(safe-area-inset-bottom, 0px) + 0.75rem)",
+        }}
         role="region"
         aria-label="Start building"
       >
