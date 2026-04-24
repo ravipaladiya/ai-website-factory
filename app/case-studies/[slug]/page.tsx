@@ -54,10 +54,32 @@ export default function CaseStudyPage({ params }: PageProps) {
 
   const lighthouseDelta = cs.metrics.lighthouseAfter - cs.metrics.lighthouseBefore;
 
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: cs.tagline,
+    description: cs.summary,
+    about: cs.company,
+    mainEntityOfPage: `/case-studies/${cs.slug}`,
+    author: {
+      "@type": "Organization",
+      name: "AI Website Factory",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "AI Website Factory",
+    },
+    articleSection: "Case studies",
+  };
+
   return (
     <>
       <Header />
       <main id="main">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+        />
         <section className="border-b border-black/5 py-16 sm:py-20 dark:border-white/10">
           <div className="container max-w-3xl">
             <p className="text-xs font-medium uppercase tracking-wider text-brand-600 dark:text-brand-300">
