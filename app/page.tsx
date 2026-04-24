@@ -5,6 +5,7 @@ import Features from "@/components/Features";
 import HowItWorks from "@/components/HowItWorks";
 import Integrations from "@/components/Integrations";
 import Pricing from "@/components/Pricing";
+import RoiCalculator from "@/components/RoiCalculator";
 import FAQ from "@/components/FAQ";
 import Testimonials from "@/components/Testimonials";
 import CTA from "@/components/CTA";
@@ -60,6 +61,7 @@ export default function HomePage() {
         <HowItWorks />
         <Integrations />
         <Pricing />
+        <RoiCalculator />
         <Testimonials />
         <FAQ />
         <CTA />
