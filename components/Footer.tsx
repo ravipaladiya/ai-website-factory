@@ -9,6 +9,7 @@ const groups: { heading: string; links: FooterLink[] }[] = [
     links: [
       { label: "Features", href: "/#features" },
       { label: "Pricing", href: "/#pricing" },
+      { label: "Compare", href: "/compare" },
       { label: "Changelog", href: "/changelog" },
       { label: "Status", href: "/status" },
     ],
