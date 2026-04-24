@@ -18,6 +18,18 @@ html {
   scroll-behavior: smooth;
 }
 
+[id] {
+  scroll-margin-top: 5rem;
+}
+
+@media (forced-colors: active) {
+  .focus-visible\:ring-2:focus-visible,
+  :focus-visible {
+    outline: 2px solid CanvasText;
+    outline-offset: 2px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
