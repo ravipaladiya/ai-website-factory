@@ -46,10 +46,28 @@ export default function BlogIndexPage({
   const [hero, ...rest] = filtered;
   const recent = rest.slice(0, 6);
 
+  const itemListJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: activeTag ? `Blog posts tagged #${activeTag}` : "AI Website Factory blog",
+    itemListOrder: "https://schema.org/ItemListOrderDescending",
+    numberOfItems: filtered.length,
+    itemListElement: filtered.slice(0, 20).map((p, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      url: `/blog/${p.slug}`,
+      name: p.title,
+    })),
+  };
+
   return (
     <>
       <Header />
       <main id="main">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
+        />
         <section className="border-b border-black/5 py-16 sm:py-20 dark:border-white/10">
           <div className="container max-w-4xl">
             <Breadcrumbs

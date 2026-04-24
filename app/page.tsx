@@ -10,6 +10,7 @@ import Testimonials from "@/components/Testimonials";
 import CTA from "@/components/CTA";
 import Newsletter from "@/components/Newsletter";
 import Footer from "@/components/Footer";
+import { summary as reviewSummary } from "@/lib/testimonials";
 
 const siteUrl = "https://ai-website-factory.example.com";
 
@@ -36,6 +37,13 @@ const softwareApplicationJsonLd = {
       priceCurrency: "USD",
     },
   ],
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: reviewSummary.averageRating.toFixed(1),
+    reviewCount: reviewSummary.totalReviews,
+    bestRating: 5,
+    worstRating: 1,
+  },
   publisher: {
     "@type": "Organization",
     name: "AI Website Factory",

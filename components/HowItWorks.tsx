@@ -25,6 +25,21 @@ const steps = [
   },
 ];
 
+const howToJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  name: "How AI Website Factory ships a production-ready site",
+  description:
+    "Four-step autonomous pipeline that plans, designs, builds, and ships a modern Next.js website.",
+  totalTime: "PT1D",
+  step: steps.map((s, i) => ({
+    "@type": "HowToStep",
+    position: i + 1,
+    name: s.title,
+    text: s.description,
+  })),
+};
+
 export default function HowItWorks() {
   return (
     <section
@@ -32,6 +47,10 @@ export default function HowItWorks() {
       aria-labelledby="how-heading"
       className="border-t border-black/5 py-20 sm:py-28 dark:border-white/10"
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToJsonLd) }}
+      />
       <div className="container">
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-sm font-medium uppercase tracking-wider text-brand-600 dark:text-brand-300">
