@@ -1,5 +1,6 @@
 "use client";
 
+import NextLink from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 type Link = { href: string; label: string };
@@ -61,18 +62,35 @@ export default function MobileMenu({ links }: { links: Link[] }) {
         >
           <nav aria-label="Mobile primary" className="container py-4">
             <ul role="list" className="flex flex-col divide-y divide-black/5 dark:divide-white/10">
-              {links.map((link, i) => (
-                <li key={link.href}>
-                  <a
-                    ref={i === 0 ? firstLinkRef : undefined}
-                    href={link.href}
-                    onClick={() => setOpen(false)}
-                    className="block py-3 text-base font-medium text-black/80 transition hover:text-black focus:outline-none focus-visible:text-brand-600 dark:text-white/80 dark:hover:text-white dark:focus-visible:text-brand-300"
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
+              {links.map((link, i) => {
+                const isInternalRoute =
+                  link.href.startsWith("/") && !link.href.startsWith("/#");
+                const cls =
+                  "block py-3 text-base font-medium text-black/80 transition hover:text-black focus:outline-none focus-visible:text-brand-600 dark:text-white/80 dark:hover:text-white dark:focus-visible:text-brand-300";
+                return (
+                  <li key={link.href}>
+                    {isInternalRoute ? (
+                      <NextLink
+                        ref={i === 0 ? firstLinkRef : undefined}
+                        href={link.href}
+                        onClick={() => setOpen(false)}
+                        className={cls}
+                      >
+                        {link.label}
+                      </NextLink>
+                    ) : (
+                      <a
+                        ref={i === 0 ? firstLinkRef : undefined}
+                        href={link.href}
+                        onClick={() => setOpen(false)}
+                        className={cls}
+                      >
+                        {link.label}
+                      </a>
+                    )}
+                  </li>
+                );
+              })}
             </ul>
           </nav>
         </div>

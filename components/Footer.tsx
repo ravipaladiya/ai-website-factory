@@ -148,18 +148,32 @@ export default function Footer() {
                 {group.heading}
               </h3>
               <ul role="list" className="mt-4 space-y-2">
-                {group.links.map((link) => (
-                  <li key={link.label}>
-                    <a
-                      href={link.href}
-                      rel={link.external ? "noopener noreferrer" : undefined}
-                      target={link.external ? "_blank" : undefined}
-                      className="text-sm text-black/60 transition hover:text-black dark:text-white/60 dark:hover:text-white"
-                    >
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
+                {group.links.map((link) => {
+                  const cls =
+                    "text-sm text-black/60 transition hover:text-black dark:text-white/60 dark:hover:text-white";
+                  const isInternalRoute =
+                    !link.external &&
+                    link.href.startsWith("/") &&
+                    !link.href.startsWith("/#");
+                  return (
+                    <li key={link.label}>
+                      {isInternalRoute ? (
+                        <Link href={link.href} className={cls}>
+                          {link.label}
+                        </Link>
+                      ) : (
+                        <a
+                          href={link.href}
+                          rel={link.external ? "noopener noreferrer" : undefined}
+                          target={link.external ? "_blank" : undefined}
+                          className={cls}
+                        >
+                          {link.label}
+                        </a>
+                      )}
+                    </li>
+                  );
+                })}
               </ul>
             </nav>
           ))}
@@ -171,20 +185,20 @@ export default function Footer() {
           <p>© {year} AI Website Factory. All rights reserved.</p>
           <ul className="flex items-center gap-4">
             <li>
-              <a
+              <Link
                 href="/privacy"
                 className="transition hover:text-black dark:hover:text-white"
               >
                 Privacy
-              </a>
+              </Link>
             </li>
             <li>
-              <a
+              <Link
                 href="/terms"
                 className="transition hover:text-black dark:hover:text-white"
               >
                 Terms
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
