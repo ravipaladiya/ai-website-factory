@@ -5,22 +5,45 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { getAllPosts, getAllTags } from "@/lib/posts";
 
-export const metadata: Metadata = {
-  title: "Blog",
-  description:
-    "Notes on building, designing, and shipping production-ready websites autonomously.",
-  alternates: {
-    canonical: "/blog",
-    types: { "application/rss+xml": "/rss.xml" },
-  },
-  openGraph: {
-    title: "Blog | AI Website Factory",
+export function generateMetadata({
+  searchParams,
+}: {
+  searchParams?: { tag?: string };
+}): Metadata {
+  const activeTag = searchParams?.tag?.trim();
+
+  if (activeTag) {
+    return {
+      title: `Posts tagged #${activeTag}`,
+      description: `AI Website Factory blog posts tagged #${activeTag}.`,
+      alternates: { canonical: "/blog" },
+      robots: { index: false, follow: true },
+      openGraph: {
+        title: `#${activeTag} posts | AI Website Factory`,
+        description: `Posts from the AI Website Factory blog tagged #${activeTag}.`,
+        type: "website",
+        url: `/blog?tag=${encodeURIComponent(activeTag)}`,
+      },
+    };
+  }
+
+  return {
+    title: "Blog",
     description:
       "Notes on building, designing, and shipping production-ready websites autonomously.",
-    type: "website",
-    url: "/blog",
-  },
-};
+    alternates: {
+      canonical: "/blog",
+      types: { "application/rss+xml": "/rss.xml" },
+    },
+    openGraph: {
+      title: "Blog | AI Website Factory",
+      description:
+        "Notes on building, designing, and shipping production-ready websites autonomously.",
+      type: "website",
+      url: "/blog",
+    },
+  };
+}
 
 function formatDate(iso: string) {
   return new Date(iso).toLocaleDateString("en-US", {
