@@ -11,6 +11,7 @@ import Testimonials from "@/components/Testimonials";
 import CTA from "@/components/CTA";
 import Newsletter from "@/components/Newsletter";
 import Footer from "@/components/Footer";
+import StickyMobileCTA from "@/components/StickyMobileCTA";
 import { summary as reviewSummary } from "@/lib/testimonials";
 
 const siteUrl = "https://ai-website-factory.example.com";
@@ -76,6 +77,7 @@ export default function HomePage() {
         <Newsletter />
       </main>
       <Footer />
+      <StickyMobileCTA />
     </>
   );
 }
