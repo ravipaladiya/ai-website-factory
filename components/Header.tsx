@@ -1,5 +1,6 @@
 import Link from "next/link";
 import MobileMenu from "./MobileMenu";
+import NavLink from "./NavLink";
 import ThemeToggle from "./ThemeToggle";
 
 const navLinks = [
@@ -30,21 +31,16 @@ export default function Header() {
           aria-label="Primary"
           className="hidden items-center gap-8 md:flex"
         >
-          {navLinks.map((link) => {
-            const isInternalRoute =
-              link.href.startsWith("/") && !link.href.startsWith("/#");
-            const cls =
-              "text-sm text-black/70 transition hover:text-black dark:text-white/70 dark:hover:text-white";
-            return isInternalRoute ? (
-              <Link key={link.href} href={link.href} className={cls}>
-                {link.label}
-              </Link>
-            ) : (
-              <a key={link.href} href={link.href} className={cls}>
-                {link.label}
-              </a>
-            );
-          })}
+          {navLinks.map((link) => (
+            <NavLink
+              key={link.href}
+              href={link.href}
+              className="text-sm text-black/70 transition hover:text-black dark:text-white/70 dark:hover:text-white"
+              activeClassName="text-black font-medium dark:text-white"
+            >
+              {link.label}
+            </NavLink>
+          ))}
         </nav>
 
         <div className="flex items-center gap-2">
