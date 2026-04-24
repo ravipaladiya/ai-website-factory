@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import StatsBanner from "@/components/StatsBanner";
 import Features from "@/components/Features";
 import HowItWorks from "@/components/HowItWorks";
+import Integrations from "@/components/Integrations";
 import Pricing from "@/components/Pricing";
 import FAQ from "@/components/FAQ";
 import Testimonials from "@/components/Testimonials";
@@ -57,6 +58,7 @@ export default function HomePage() {
         <StatsBanner />
         <Features />
         <HowItWorks />
+        <Integrations />
         <Pricing />
         <Testimonials />
         <FAQ />
