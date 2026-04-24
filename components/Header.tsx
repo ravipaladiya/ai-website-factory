@@ -3,10 +3,11 @@ import MobileMenu from "./MobileMenu";
 import ThemeToggle from "./ThemeToggle";
 
 const navLinks = [
-  { href: "#features", label: "Features" },
-  { href: "#how-it-works", label: "How it works" },
-  { href: "#pricing", label: "Pricing" },
-  { href: "#faq", label: "FAQ" },
+  { href: "/#features", label: "Features" },
+  { href: "/#pricing", label: "Pricing" },
+  { href: "/compare", label: "Compare" },
+  { href: "/docs", label: "Docs" },
+  { href: "/blog", label: "Blog" },
 ];
 
 export default function Header() {
