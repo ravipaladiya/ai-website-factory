@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Plan } from "@/lib/auth";
 import UserMenu from "./UserMenu";
 
@@ -30,8 +31,9 @@ export default function Topbar({ title, user }: Props) {
           {user.plan}
         </span>
 
-        <button
-          type="button"
+        <Link
+          href="/new"
+          prefetch
           className="inline-flex items-center gap-1.5 rounded-lg bg-brand-600 px-3 py-1.5 text-sm font-medium text-white shadow-sm transition hover:bg-brand-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
         >
           <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" className="h-4 w-4">
@@ -42,9 +44,9 @@ export default function Topbar({ title, user }: Props) {
               strokeLinecap="round"
             />
           </svg>
-          <span className="hidden sm:inline">New Project</span>
+          <span className="hidden sm:inline">New project</span>
           <span className="sm:hidden">New</span>
-        </button>
+        </Link>
 
         <UserMenu
           name={user.name}
