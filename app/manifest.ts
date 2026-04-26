@@ -30,5 +30,28 @@ export default function manifest(): MetadataRoute.Manifest {
         purpose: "maskable",
       },
     ],
+    shortcuts: [
+      {
+        name: "Start a new project",
+        short_name: "New project",
+        description: "Open the four-step wizard and ship a site today.",
+        url: "/new",
+        icons: [{ src: "/favicon.svg", sizes: "any", type: "image/svg+xml" }],
+      },
+      {
+        name: "Browse templates",
+        short_name: "Templates",
+        description: "SaaS landing, portfolio, e-commerce, blog, docs.",
+        url: "/templates",
+        icons: [{ src: "/favicon.svg", sizes: "any", type: "image/svg+xml" }],
+      },
+      {
+        name: "Open the docs",
+        short_name: "Docs",
+        description: "Quickstart, deploy, extend.",
+        url: "/docs",
+        icons: [{ src: "/favicon.svg", sizes: "any", type: "image/svg+xml" }],
+      },
+    ],
   };
 }
