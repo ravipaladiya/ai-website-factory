@@ -155,6 +155,12 @@ export default function PricingClient() {
               : interval === "annual"
                 ? "per month, billed annually"
                 : "per month";
+          const annualSavings =
+            interval === "annual" &&
+            tier.monthly !== null &&
+            tier.annual !== null
+              ? Math.round((tier.monthly - tier.annual) * 12)
+              : 0;
           const buttonLabel = busy === tier.id ? "Redirecting…" : tier.cta;
 
           return (
@@ -193,6 +199,11 @@ export default function PricingClient() {
                   </span>
                 )}
               </div>
+              {annualSavings > 0 && (
+                <p className="mt-1 text-xs font-medium text-emerald-700 dark:text-emerald-300">
+                  Save ${annualSavings}/year vs monthly
+                </p>
+              )}
 
               <ul role="list" className="mt-6 flex-1 space-y-3 text-sm">
                 {comparisonRows.slice(0, 5).map((row) => {
