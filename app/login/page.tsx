@@ -61,7 +61,19 @@ export default async function LoginPage({
           </Suspense>
         </div>
 
-        <p className="mt-10 text-center text-xs text-black/50 dark:text-white/50">
+        <p className="mt-8 text-center text-sm text-black/65 dark:text-white/65">
+          New here?{" "}
+          <Link
+            href="/new"
+            prefetch
+            className="rounded font-medium text-brand-700 underline-offset-4 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 dark:text-brand-300"
+          >
+            Start a project
+          </Link>{" "}
+          <span aria-hidden="true">→</span>
+        </p>
+
+        <p className="mt-6 text-center text-xs text-black/50 dark:text-white/50">
           <Link href="/" className="hover:text-black/80 dark:hover:text-white/80">
             ← Back to home
           </Link>
