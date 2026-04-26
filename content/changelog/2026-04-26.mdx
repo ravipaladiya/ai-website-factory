@@ -1,0 +1,23 @@
+---
+title: "Week of April 26, 2026"
+date: "2026-04-26"
+tags: ["shipping", "conversion", "trust"]
+summary: "A new /security page, a /templates gallery, every primary CTA wired straight to the wizard, and a 404 that actually helps."
+---
+
+## Added
+
+- **`/security`** — public security posture page covering encryption, access controls, application security, and resilience. Includes a SOC 2 Type I status, a subprocessors table, and a `security@` vulnerability disclosure path with an SLA.
+- **`/templates`** — discoverable gallery of the 5 production-ready templates (SaaS landing, portfolio, e-commerce, blog, docs). Each card has audience, tagline, three concrete highlights, and links to a live preview + the wizard.
+
+## Improved
+
+- **Conversion routing** — the Hero, ROI calculator, About page, Compare page, individual case studies, the Pricing free tier, the sticky mobile CTA, and the Header all now route directly to `/new` instead of bouncing through a homepage anchor. One tap to the wizard from anywhere on the site.
+- **Header** — `Sign in` now actually goes to `/login`, `Get started` goes to `/new`. Both via `next/link` so they prefetch.
+- **Mobile menu** — surfaces a primary `Get started free` + secondary `Sign in` button stack at the bottom of the panel; previously the mobile menu had no conversion CTA at all.
+- **404 page** — wrapped in the site Header / Footer so visitors aren't stranded, with a 6-card grid of popular destinations (Templates, Compare, Docs, Blog, Case studies) and an explicit `noindex` so 404 URLs don't pollute the index.
+- **Error page** — same Header / Footer wrap, plus a tertiary `Contact support` link alongside *Try again* and *Back home*.
+
+## Reliability
+
+- Every shipped change ran the full `next build` + `next lint` gates green before merge. No skipped checks.
