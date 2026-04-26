@@ -63,14 +63,19 @@ export default function BlogPostPage({ params }: PageProps) {
   const { prev, next } = getPrevNext(post.slug);
   const shareUrl = `${siteUrl}/blog/${post.slug}`;
 
+  const ogImageUrl = `${siteUrl}/blog/${post.slug}/opengraph-image`;
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: post.title,
     description: post.excerpt,
+    image: [ogImageUrl],
     datePublished: post.date,
     dateModified: post.date,
     keywords: post.tags.join(", "),
+    wordCount: post.wordCount,
+    inLanguage: "en-US",
     author: { "@type": "Organization", name: post.author },
     publisher: {
       "@type": "Organization",
