@@ -80,6 +80,17 @@ export default function Hero() {
           </a>
         </div>
 
+        <p className="mt-3 text-xs text-black/55 dark:text-white/55">
+          Just curious?{" "}
+          <Link
+            href="/demo"
+            className="rounded font-medium text-brand-700 underline-offset-4 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 dark:text-brand-300"
+          >
+            Watch a live build
+          </Link>{" "}
+          <span aria-hidden="true">→</span>
+        </p>
+
         <div className="mt-5 w-full">
           <HeroMockup />
         </div>
