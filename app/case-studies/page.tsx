@@ -127,6 +127,33 @@ export default function CaseStudiesIndexPage() {
             </ul>
           </div>
         </section>
+
+        <section className="border-t border-black/5 py-16 sm:py-20 dark:border-white/10">
+          <div className="container max-w-3xl text-center">
+            <h2 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
+              Your story next.
+            </h2>
+            <p className="mt-4 text-black/70 dark:text-white/70">
+              Spin up a production-ready, SEO-optimized site in minutes — and
+              add your name to the list.
+            </p>
+            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <Link
+                href="/new"
+                prefetch
+                className="inline-flex items-center justify-center rounded-lg bg-brand-600 px-5 py-3 text-sm font-medium text-white shadow-sm transition hover:bg-brand-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
+              >
+                Start a new project
+              </Link>
+              <Link
+                href="/templates"
+                className="inline-flex items-center justify-center rounded-lg border border-black/10 bg-white px-5 py-3 text-sm font-medium text-black/80 shadow-sm transition hover:bg-black/5 dark:border-white/10 dark:bg-white/5 dark:text-white/90 dark:hover:bg-white/10"
+              >
+                Browse templates →
+              </Link>
+            </div>
+          </div>
+        </section>
       </main>
       <Footer />
     </>
