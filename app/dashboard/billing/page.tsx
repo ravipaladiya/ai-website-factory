@@ -16,12 +16,9 @@ export default async function BillingPage() {
 
   return (
     <div>
-      <div>
-        <h2 className="text-2xl font-semibold tracking-tight">Billing</h2>
-        <p className="mt-1 text-sm text-black/60 dark:text-white/60">
-          Manage your plan and download invoices.
-        </p>
-      </div>
+      <p className="text-sm text-black/60 dark:text-white/60">
+        Manage your plan and download invoices.
+      </p>
 
       <section
         aria-labelledby="plan-heading"

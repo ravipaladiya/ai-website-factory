@@ -12,13 +12,10 @@ export default function DashboardPage() {
   return (
     <div>
       <div className="flex flex-wrap items-baseline justify-between gap-3">
-        <div>
-          <h2 className="text-2xl font-semibold tracking-tight">Projects</h2>
-          <p className="mt-1 text-sm text-black/60 dark:text-white/60">
-            {projects.length} projects · {counts.live} live · {counts.building}{" "}
-            building · {counts.failed} failed
-          </p>
-        </div>
+        <p className="text-sm text-black/60 dark:text-white/60">
+          {projects.length} projects · {counts.live} live · {counts.building}{" "}
+          building · {counts.failed} failed
+        </p>
         <Link
           href="/new"
           prefetch
