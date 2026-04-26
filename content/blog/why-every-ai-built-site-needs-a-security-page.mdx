@@ -1,0 +1,69 @@
+---
+title: "Why every AI-built site needs a /security page on day one"
+date: "2026-04-26"
+author: "AI Website Factory"
+tags: ["security", "trust", "enterprise"]
+excerpt: "If your generated site doesn't have a credible answer to 'how do you protect our data', it can't sell to anyone with a procurement team. The /security page is part of the build, not a Q3 sales project."
+---
+
+## The page that closes deals you didn't know were in the pipeline
+
+Every B2B sale of any meaningful size goes through a vendor review. Sometimes it's a polished questionnaire from a procurement team, sometimes it's a single line in a Slack DM: *"do you have a security page?"* If the answer is "we'll put one together" the conversation stalls — usually for weeks, sometimes forever.
+
+An AI-built site has no excuse to stall there. The information lives in your infrastructure config, not in an exec's head. The page is a serialization of decisions you've already made.
+
+## What it actually has to say
+
+A useful security page is specific. Vague reassurances are worse than nothing — they signal that you haven't thought about it. Four pillars cover most of the ground:
+
+- **Encryption.** What protocols, what cipher suites, what key management. *"TLS 1.2+ everywhere, AES-256 at rest, per-tenant keys for generated artifacts"* — concrete, auditable.
+- **Access controls.** Who can touch production, how is access granted and revoked, and what's logged. *"SSO with hardware-key MFA, just-in-time credentials, append-only audit log."*
+- **Application security.** The defaults that ship with every release. *"Strict CSP, HSTS preloaded, dependency scanning on every PR, secrets isolated to per-environment vaults."*
+- **Resilience.** What happens when something goes wrong. *"Multi-AZ, point-in-time recovery, daily backups with quarterly restore drills, RTO 4h / RPO 1h."*
+
+Each bullet should map to something a security reviewer can verify if they ask.
+
+## Compliance status, not compliance theater
+
+The hardest part of a security page is the section on standards. Almost everyone overstates. Treat it like a status table, not a marketing claim.
+
+- **Live**: GDPR, CCPA / CPRA, an annual third-party penetration test.
+- **In progress**: SOC 2 Type I (with a target window).
+- **Planned**: SOC 2 Type II, ISO 27001 — with the order you intend to tackle them.
+
+A reviewer who sees *"SOC 2 Type I — audit window opened Q1 2026, report targeted Q3 2026"* knows you're a real shop on a real timeline. They reach the same conclusion if they see *"SOC 2 — coming soon"* — but the conclusion is the opposite one.
+
+## The subprocessors list is non-optional
+
+A modern SaaS is a small core surrounded by vendors. Pretending otherwise wastes the reviewer's time. Publish the list: vendor, purpose, region. Vercel for hosting, AWS for storage, Stripe for billing, Resend for transactional email, Sentry for error tracking. Commit to notifying customers before adding a new one. That commitment alone is enough to clear several procurement rubrics.
+
+## Vulnerability disclosure, with an SLA
+
+The most overlooked piece is the contact path. Two things are required:
+
+- A `security@` mailbox that is monitored — not a generic contact form.
+- A published SLA: *"acknowledgement within one business day, triage within three, credit in the changelog after fix."*
+
+Researchers who can't find a clean disclosure path either drop the report on Twitter or sell it. Neither outcome is good for you.
+
+## Why the agent should write it
+
+A security page is the kind of page humans habitually defer. It isn't user-facing in the conversion-funnel sense, the copy is finicky, and there's no immediate dopamine hit when it ships. So it slips, and slips, and the deal that needed it slips with it.
+
+An autonomous build agent has no such bias. It treats the page as a deliverable like any other: a PR, a build gate, a checklist of bullets to verify, a `noindex` if and only if you actually want one. The page exists from day one because every site needs it from day one.
+
+## What a good `/security` page does for you
+
+It does three quiet, compounding things:
+
+1. **Closes objections you never see.** Procurement reviewers tick a box and move on instead of opening a thread.
+2. **Sets the bar internally.** Your team can't write *"we encrypt at rest"* on the page if they actually don't. Publishing forces alignment.
+3. **Gives security researchers a place to land.** A clean disclosure path turns potential incidents into private fixes.
+
+Three quiet wins. Together they compound into "we look like a real company" — which, more often than not, is what a sale comes down to.
+
+## The shortcut
+
+If you're an existing AI Website Factory customer, the [`/security` page](/security) is on your site. Read it, edit the bullets to reflect your actual posture, and ship the change. If anything on the page is wrong for your environment, the agent will rewrite the section in the next PR.
+
+If you're not, [start a project](/new) and the page is in the first commit.
