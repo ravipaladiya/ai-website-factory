@@ -13,7 +13,7 @@ import CTA from "@/components/CTA";
 import Newsletter from "@/components/Newsletter";
 import Footer from "@/components/Footer";
 import StickyMobileCTA from "@/components/StickyMobileCTA";
-import { summary as reviewSummary } from "@/lib/testimonials";
+import { reviews, summary as reviewSummary } from "@/lib/testimonials";
 
 const siteUrl = "https://ai-website-factory.example.com";
 
@@ -47,6 +47,25 @@ const softwareApplicationJsonLd = {
     bestRating: 5,
     worstRating: 1,
   },
+  // Top 5 reviews kept inline; the full set is on /testimonials.
+  review: reviews.slice(0, 5).map((r) => ({
+    "@type": "Review",
+    reviewRating: {
+      "@type": "Rating",
+      ratingValue: r.rating,
+      bestRating: 5,
+      worstRating: 1,
+    },
+    author: {
+      "@type": "Person",
+      name: r.name,
+      jobTitle: r.title,
+    },
+    reviewBody: r.quote,
+    ...(r.caseStudySlug
+      ? { url: `${siteUrl}/case-studies/${r.caseStudySlug}` }
+      : {}),
+  })),
   publisher: {
     "@type": "Organization",
     name: "AI Website Factory",
