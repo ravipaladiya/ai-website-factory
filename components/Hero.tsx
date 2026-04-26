@@ -1,3 +1,4 @@
+import Link from "next/link";
 import HeroMockup from "./HeroMockup";
 
 const lighthouse = [
@@ -64,12 +65,13 @@ export default function Hero() {
         </p>
 
         <div className="mt-4 flex w-full flex-col items-center justify-center gap-2.5 sm:flex-row">
-          <a
-            href="#cta"
+          <Link
+            href="/new"
+            prefetch
             className="inline-flex w-full items-center justify-center rounded-lg bg-brand-600 px-5 py-2 text-sm font-medium text-white shadow-sm transition hover:bg-brand-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 sm:w-auto"
           >
             Start building free
-          </a>
+          </Link>
           <a
             href="#how-it-works"
             className="inline-flex w-full items-center justify-center rounded-lg border border-black/10 bg-white px-5 py-2 text-sm font-medium text-black/80 shadow-sm transition hover:bg-black/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 sm:w-auto dark:border-white/10 dark:bg-white/5 dark:text-white/90 dark:hover:bg-white/10"
