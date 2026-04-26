@@ -8,7 +8,10 @@ import { getAllChangelogEntries } from "@/lib/changelog";
 export const metadata: Metadata = {
   title: "Changelog",
   description: "Weekly product updates from the AI Website Factory agent.",
-  alternates: { canonical: "/changelog" },
+  alternates: {
+    canonical: "/changelog",
+    types: { "application/rss+xml": "/changelog/feed.xml" },
+  },
   openGraph: {
     title: "Changelog | AI Website Factory",
     description: "Weekly product updates from the AI Website Factory agent.",
@@ -46,6 +49,18 @@ export default function ChangelogPage() {
             <p className="mt-4 max-w-2xl text-black/70 dark:text-white/70">
               Product updates from the autonomous agent. New features, small
               fixes, and the occasional architectural rethink.
+            </p>
+            <p className="mt-6">
+              <a
+                href="/changelog/feed.xml"
+                className="inline-flex items-center gap-2 text-sm font-medium text-brand-600 transition hover:text-brand-700 dark:text-brand-300 dark:hover:text-brand-200"
+              >
+                <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" className="h-4 w-4">
+                  <path d="M4 11a5 5 0 0 1 5 5M4 5a11 11 0 0 1 11 11" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" />
+                  <circle cx="5" cy="15" r="1.25" fill="currentColor" />
+                </svg>
+                Subscribe via RSS
+              </a>
             </p>
           </div>
         </section>
