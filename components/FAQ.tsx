@@ -23,6 +23,14 @@ const faqs = [
     q: "Can I deploy it anywhere?",
     a: "Yes. The generated Next.js app runs on Vercel, Netlify, Cloudflare, AWS, and any Node-compatible host. No vendor lock-in.",
   },
+  {
+    q: "How do you handle security?",
+    a: "TLS 1.2+ in transit, AES-256 at rest, SSO + hardware-key MFA for production access, an annual third-party penetration test, and a published vulnerability disclosure path at security@. SOC 2 Type I is in progress; GDPR and CCPA are live. Full posture and subprocessors at /security.",
+  },
+  {
+    q: "Are there starting templates?",
+    a: "Yes. Five production-ready templates ship out of the box: SaaS landing, portfolio, e-commerce, blog, and docs. Browse and preview each at /templates — or describe what you want and the agent will build a fresh layout from scratch.",
+  },
 ];
 
 export default function FAQ() {
