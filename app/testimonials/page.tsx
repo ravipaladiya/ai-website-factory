@@ -44,11 +44,20 @@ function Stars({ value }: { value: number }) {
   );
 }
 
+const siteUrl = "https://ai-website-factory.example.com";
+
 export default function TestimonialsPage() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
     name: "AI Website Factory",
+    url: siteUrl,
+    description:
+      "Autonomous engineering agent that plans, designs, builds, tests, and ships production-ready websites.",
+    brand: {
+      "@type": "Brand",
+      name: "AI Website Factory",
+    },
     aggregateRating: {
       "@type": "AggregateRating",
       ratingValue: summary.averageRating.toFixed(1),
@@ -56,6 +65,24 @@ export default function TestimonialsPage() {
       bestRating: 5,
       worstRating: 1,
     },
+    review: reviews.map((r) => ({
+      "@type": "Review",
+      reviewRating: {
+        "@type": "Rating",
+        ratingValue: r.rating,
+        bestRating: 5,
+        worstRating: 1,
+      },
+      author: {
+        "@type": "Person",
+        name: r.name,
+        jobTitle: r.title,
+      },
+      reviewBody: r.quote,
+      ...(r.caseStudySlug
+        ? { url: `${siteUrl}/case-studies/${r.caseStudySlug}` }
+        : {}),
+    })),
   };
 
   return (
