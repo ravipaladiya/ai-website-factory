@@ -77,6 +77,17 @@ export default function CTA() {
             </Link>
           </div>
 
+          <p className="relative mt-4 text-xs text-white/70">
+            Or{" "}
+            <Link
+              href="/templates"
+              className="rounded font-medium text-white underline-offset-4 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand-700"
+            >
+              browse the 5 templates
+            </Link>{" "}
+            <span aria-hidden="true">→</span>
+          </p>
+
           <ul
             role="list"
             className="relative mx-auto mt-8 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-white/80 sm:text-sm"
