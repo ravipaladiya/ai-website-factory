@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useReducer } from "react";
 
 type Slide = {
@@ -211,16 +212,25 @@ export default function HeroMockup() {
         </div>
       </div>
 
-      <div className="mt-3 flex items-center justify-center gap-1.5" aria-hidden="true">
-        {slides.map((s, i) => (
-          <span
-            key={s.label}
-            className={
-              (i === index ? "w-5 bg-brand-500" : "w-1.5 bg-black/20 dark:bg-white/20") +
-              " h-1.5 rounded-full transition-all duration-500"
-            }
-          />
-        ))}
+      <div className="mt-3 flex items-center justify-center gap-3">
+        <div className="flex items-center gap-1.5" aria-hidden="true">
+          {slides.map((s, i) => (
+            <span
+              key={s.label}
+              className={
+                (i === index ? "w-5 bg-brand-500" : "w-1.5 bg-black/20 dark:bg-white/20") +
+                " h-1.5 rounded-full transition-all duration-500"
+              }
+            />
+          ))}
+        </div>
+        <span aria-hidden="true" className="text-black/20 dark:text-white/20">·</span>
+        <Link
+          href="/templates"
+          className="rounded text-[11px] font-medium text-brand-700 transition hover:text-brand-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 dark:text-brand-300 dark:hover:text-brand-200"
+        >
+          Browse all templates <span aria-hidden="true">→</span>
+        </Link>
       </div>
     </div>
   );
