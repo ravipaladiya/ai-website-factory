@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function StickyMobileCTA() {
@@ -74,12 +75,12 @@ export default function StickyMobileCTA() {
             Production-ready, SEO-first. Free to start.
           </p>
         </div>
-        <a
-          href="#cta"
+        <Link
+          href="/new"
           className="shrink-0 rounded-lg bg-brand-600 px-4 py-2 text-sm font-medium text-white shadow-sm transition hover:bg-brand-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
         >
           Start free
-        </a>
+        </Link>
       </div>
     </div>
   );

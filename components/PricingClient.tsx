@@ -64,7 +64,7 @@ export default function PricingClient() {
 
     if (!tier.billable) {
       window.location.href =
-        planId === "enterprise" ? "/contact" : "/#cta";
+        planId === "enterprise" ? "/contact" : "/new";
       return;
     }
 
