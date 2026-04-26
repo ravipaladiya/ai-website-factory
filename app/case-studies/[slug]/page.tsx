@@ -212,6 +212,60 @@ export default function CaseStudyPage({ params }: PageProps) {
             </div>
           </div>
         </section>
+
+        {(() => {
+          const others = caseStudies.filter((c) => c.slug !== cs.slug);
+          if (others.length === 0) return null;
+          return (
+            <section
+              aria-labelledby="related-cases-heading"
+              className="border-t border-black/5 py-16 sm:py-20 dark:border-white/10"
+            >
+              <div className="container max-w-5xl">
+                <h2
+                  id="related-cases-heading"
+                  className="text-2xl font-semibold tracking-tight"
+                >
+                  Other case studies
+                </h2>
+                <ul
+                  role="list"
+                  className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2"
+                >
+                  {others.map((other) => (
+                    <li key={other.slug}>
+                      <Link
+                        href={`/case-studies/${other.slug}`}
+                        className="group flex h-full flex-col rounded-2xl border border-black/5 bg-white/70 p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-brand-500/30 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 dark:border-white/10 dark:bg-white/5"
+                      >
+                        <p className="text-xs font-semibold uppercase tracking-wider text-brand-600 dark:text-brand-300">
+                          {other.company}
+                        </p>
+                        <h3 className="mt-2 text-base font-semibold tracking-tight transition group-hover:text-brand-700 dark:group-hover:text-brand-200">
+                          {other.tagline}
+                        </h3>
+                        <p className="mt-2 line-clamp-2 text-sm text-black/65 dark:text-white/65">
+                          {other.summary}
+                        </p>
+                        <div className="mt-4 flex items-center gap-3 text-[11px] uppercase tracking-wider text-black/55 dark:text-white/55">
+                          <span>{other.metrics.timeToLaunch}</span>
+                          <span aria-hidden="true">·</span>
+                          <span>
+                            Lighthouse {other.metrics.lighthouseBefore}{" "}
+                            <span aria-hidden="true">→</span>{" "}
+                            <span className="text-emerald-700 dark:text-emerald-300">
+                              {other.metrics.lighthouseAfter}
+                            </span>
+                          </span>
+                        </div>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </section>
+          );
+        })()}
       </main>
       <Footer />
     </>
