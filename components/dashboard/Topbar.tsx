@@ -1,8 +1,12 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import type { Plan } from "@/lib/auth";
 import UserMenu from "./UserMenu";
 
 type Props = {
+  // Fallback title used when the current route doesn't match a known section.
   title: string;
   user: {
     name?: string | null;
@@ -12,12 +16,30 @@ type Props = {
   };
 };
 
+const TITLES: Record<string, string> = {
+  "/dashboard": "Projects",
+  "/dashboard/builds": "Builds",
+  "/dashboard/settings": "Settings",
+  "/dashboard/billing": "Billing",
+};
+
+function titleFor(pathname: string | null, fallback: string): string {
+  if (!pathname) return fallback;
+  const normalized =
+    pathname.length > 1 && pathname.endsWith("/")
+      ? pathname.slice(0, -1)
+      : pathname;
+  return TITLES[normalized] ?? fallback;
+}
+
 export default function Topbar({ title, user }: Props) {
+  const pathname = usePathname();
+  const resolvedTitle = titleFor(pathname, title);
   return (
     <header className="sticky top-0 z-30 border-b border-black/5 bg-white/70 backdrop-blur-md dark:border-white/10 dark:bg-black/40">
       <div className="flex h-14 items-center gap-3 px-4 sm:px-6">
         <h1 className="flex-1 truncate text-base font-semibold tracking-tight">
-          {title}
+          {resolvedTitle}
         </h1>
 
         <span
