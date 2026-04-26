@@ -5,6 +5,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { caseStudies } from "@/lib/testimonials";
 
+const siteUrl = "https://ai-website-factory.example.com";
+
 export const metadata: Metadata = {
   title: "Case studies",
   description:
@@ -20,10 +22,29 @@ export const metadata: Metadata = {
 };
 
 export default function CaseStudiesIndexPage() {
+  const itemListJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "AI Website Factory case studies",
+    description:
+      "Real teams shipped real sites — time to launch, Lighthouse lift, and what they kept after.",
+    numberOfItems: caseStudies.length,
+    itemListElement: caseStudies.map((cs, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      url: `${siteUrl}/case-studies/${cs.slug}`,
+      name: `${cs.company} — ${cs.tagline}`,
+    })),
+  };
+
   return (
     <>
       <Header />
       <main id="main">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
+        />
         <section className="border-b border-black/5 py-16 sm:py-20 dark:border-white/10">
           <div className="container max-w-4xl">
             <Breadcrumbs
