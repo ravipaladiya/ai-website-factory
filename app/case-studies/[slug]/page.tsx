@@ -203,7 +203,8 @@ export default function CaseStudyPage({ params }: PageProps) {
                 ← All testimonials
               </Link>
               <Link
-                href="/#cta"
+                href="/new"
+                prefetch
                 className="inline-flex items-center gap-1 font-medium text-brand-700 hover:text-brand-800 dark:text-brand-300 dark:hover:text-brand-200"
               >
                 Start your own <span aria-hidden="true">→</span>

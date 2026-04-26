@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useState } from "react";
 
 const DEV_DAYS_PER_SITE = 28;
@@ -202,12 +203,12 @@ export default function RoiCalculator() {
               </dl>
 
               <div className="mt-auto pt-8">
-                <a
-                  href="#cta"
+                <Link
+                  href="/new"
                   className="inline-flex items-center justify-center rounded-lg bg-white px-5 py-2.5 text-sm font-medium text-brand-700 shadow-sm transition hover:bg-brand-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand-700"
                 >
                   Start saving today →
-                </a>
+                </Link>
                 <p className="mt-3 text-[11px] text-white/60">
                   Estimates assume a typical marketing site; actual savings
                   depend on scope and team setup.
