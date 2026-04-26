@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { signIn } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
@@ -105,13 +106,13 @@ export default function LoginForm({ providers }: { providers: Provider[] }) {
 
       <p className="pt-2 text-center text-xs text-black/60 dark:text-white/60">
         By continuing, you agree to our{" "}
-        <a href="/terms" className="underline underline-offset-2">
+        <Link href="/terms" className="underline underline-offset-2">
           Terms
-        </a>{" "}
+        </Link>{" "}
         and{" "}
-        <a href="/privacy" className="underline underline-offset-2">
+        <Link href="/privacy" className="underline underline-offset-2">
           Privacy Policy
-        </a>
+        </Link>
         .
       </p>
     </div>
