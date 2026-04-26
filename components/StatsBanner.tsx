@@ -102,13 +102,26 @@ function Counter({ target, format, start, durationMs = 1400, reducedMotion }: Co
   }, [start, target, durationMs, reducedMotion]);
 
   const formatted = formatValue(value, format);
+  const finalFormatted = formatValue(target, format);
 
   return (
-    <span className="tabular-nums" aria-hidden={start ? undefined : "true"}>
-      {formatted.prefix}
-      {formatted.value}
-      {formatted.suffix}
-    </span>
+    <>
+      {/*
+        Animated value -- hidden from screen readers so they don't announce
+        every easing tick (e.g. "12,841 sites built. 12,842 sites built. ...").
+      */}
+      <span className="tabular-nums" aria-hidden="true">
+        {formatted.prefix}
+        {formatted.value}
+        {formatted.suffix}
+      </span>
+      {/* Single, stable, accessible value for assistive tech. */}
+      <span className="sr-only">
+        {finalFormatted.prefix}
+        {finalFormatted.value}
+        {finalFormatted.suffix}
+      </span>
+    </>
   );
 }
 
