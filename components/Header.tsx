@@ -5,6 +5,7 @@ import ThemeToggle from "./ThemeToggle";
 
 const navLinks = [
   { href: "/#features", label: "Features" },
+  { href: "/templates", label: "Templates" },
   { href: "/#pricing", label: "Pricing" },
   { href: "/compare", label: "Compare" },
   { href: "/docs", label: "Docs" },
@@ -29,7 +30,7 @@ export default function Header() {
 
         <nav
           aria-label="Primary"
-          className="hidden items-center gap-8 md:flex"
+          className="hidden items-center gap-6 md:flex lg:gap-8"
         >
           {navLinks.map((link) => (
             <NavLink
