@@ -45,18 +45,18 @@ export default function Header() {
 
         <div className="flex items-center gap-2">
           <ThemeToggle />
-          <a
-            href="#cta"
+          <Link
+            href="/login"
             className="hidden rounded-lg px-3 py-2 text-sm font-medium text-black/80 transition hover:text-black sm:inline-block dark:text-white/80 dark:hover:text-white"
           >
             Sign in
-          </a>
-          <a
-            href="#cta"
+          </Link>
+          <Link
+            href="/new"
             className="hidden items-center rounded-lg bg-brand-600 px-4 py-2 text-sm font-medium text-white shadow-sm transition hover:bg-brand-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 md:inline-flex"
           >
             Get started
-          </a>
+          </Link>
           <MobileMenu links={navLinks} />
         </div>
       </div>

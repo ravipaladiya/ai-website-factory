@@ -92,6 +92,23 @@ export default function MobileMenu({ links }: { links: Link[] }) {
                 );
               })}
             </ul>
+
+            <div className="mt-4 flex flex-col gap-2 pt-4">
+              <NextLink
+                href="/new"
+                onClick={() => setOpen(false)}
+                className="inline-flex w-full items-center justify-center rounded-lg bg-brand-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
+              >
+                Get started free
+              </NextLink>
+              <NextLink
+                href="/login"
+                onClick={() => setOpen(false)}
+                className="inline-flex w-full items-center justify-center rounded-lg border border-black/10 bg-white px-4 py-3 text-sm font-medium text-black/80 transition hover:bg-black/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 dark:border-white/10 dark:bg-white/5 dark:text-white/90 dark:hover:bg-white/10"
+              >
+                Sign in
+              </NextLink>
+            </div>
           </nav>
         </div>
       )}
