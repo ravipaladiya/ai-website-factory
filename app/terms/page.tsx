@@ -96,11 +96,36 @@ const sections = [
   },
 ];
 
+const siteUrl = "https://ai-website-factory.example.com";
+
 export default function TermsPage() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "TermsOfService",
+    "@id": `${siteUrl}/terms#termsofservice`,
+    name: "Terms of Service",
+    description:
+      "The terms governing your use of AI Website Factory.",
+    url: `${siteUrl}/terms`,
+    inLanguage: "en-US",
+    isAccessibleForFree: true,
+    dateModified: lastUpdated,
+    isPartOf: { "@id": `${siteUrl}/#website` },
+    publisher: {
+      "@type": "Organization",
+      "@id": `${siteUrl}/#organization`,
+      name: "AI Website Factory",
+    },
+  };
+
   return (
     <>
       <Header />
       <main id="main">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <article className="py-16 sm:py-20">
           <div className="container max-w-3xl">
             <header>
