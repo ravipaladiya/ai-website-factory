@@ -30,8 +30,8 @@ export default function GlobalError({
           Something went wrong.
         </h1>
         <p className="text-balance mt-4 max-w-md text-black/70 dark:text-white/70">
-          An unexpected error occurred. You can try again, or head somewhere
-          else.
+          An unexpected error occurred. You can try again, check whether it&rsquo;s
+          an incident, or head somewhere else.
         </p>
 
         {error.digest && (
@@ -49,8 +49,14 @@ export default function GlobalError({
             Try again
           </button>
           <Link
-            href="/"
+            href="/status"
             className="inline-flex items-center justify-center rounded-lg border border-black/10 bg-white px-5 py-3 text-sm font-medium text-black/80 shadow-sm transition hover:bg-black/5 dark:border-white/10 dark:bg-white/5 dark:text-white/90 dark:hover:bg-white/10"
+          >
+            View status
+          </Link>
+          <Link
+            href="/"
+            className="inline-flex items-center justify-center rounded-lg px-5 py-3 text-sm font-medium text-black/70 transition hover:text-black dark:text-white/70 dark:hover:text-white"
           >
             Back home
           </Link>
