@@ -377,6 +377,17 @@ export default function SecurityPage() {
                 Request a DPA / NDA
               </Link>
             </div>
+            <p className="mt-6 text-sm text-black/55 dark:text-white/55">
+              Researchers and scanners:{" "}
+              <a
+                href="/.well-known/security.txt"
+                className="font-medium text-brand-700 underline-offset-4 hover:underline dark:text-brand-300"
+              >
+                /.well-known/security.txt
+              </a>{" "}
+              (RFC 9116) carries the machine-readable contact, policy URL, and
+              expiration.
+            </p>
           </div>
         </section>
       </main>
