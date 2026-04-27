@@ -33,6 +33,7 @@ const siteUrl = "https://ai-website-factory.example.com";
 export default function ChangelogPage() {
   const entries = getAllChangelogEntries();
 
+  const latestEntryDate = entries[0]?.date;
   const blogJsonLd = {
     "@context": "https://schema.org",
     "@type": "Blog",
@@ -43,6 +44,7 @@ export default function ChangelogPage() {
     image: `${siteUrl}/changelog/opengraph-image`,
     inLanguage: "en-US",
     isAccessibleForFree: true,
+    ...(latestEntryDate ? { dateModified: latestEntryDate } : {}),
     publisher: {
       "@type": "Organization",
       "@id": `${siteUrl}/#organization`,
