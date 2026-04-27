@@ -54,13 +54,18 @@ export default function CaseStudyPage({ params }: PageProps) {
 
   const lighthouseDelta = cs.metrics.lighthouseAfter - cs.metrics.lighthouseBefore;
 
+  const canonicalUrl = `https://ai-website-factory.example.com/case-studies/${cs.slug}`;
   const articleJsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: cs.tagline,
     description: cs.summary,
     about: cs.company,
-    mainEntityOfPage: `/case-studies/${cs.slug}`,
+    mainEntityOfPage: { "@type": "WebPage", "@id": canonicalUrl },
+    url: canonicalUrl,
+    image: `${canonicalUrl}/opengraph-image`,
+    inLanguage: "en-US",
+    isAccessibleForFree: true,
     author: {
       "@type": "Organization",
       name: "AI Website Factory",
@@ -70,6 +75,11 @@ export default function CaseStudyPage({ params }: PageProps) {
       name: "AI Website Factory",
     },
     articleSection: "Case studies",
+    mentions: {
+      "@type": "Organization",
+      name: cs.company,
+      url: `https://${cs.siteUrl}`,
+    },
   };
 
   return (
