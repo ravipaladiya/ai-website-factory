@@ -303,8 +303,46 @@ export default function PricingClient() {
             <ComparisonBody />
           </table>
         </div>
+
+        <EnterpriseCloser />
       </div>
     </>
+  );
+}
+
+function EnterpriseCloser() {
+  return (
+    <aside
+      aria-labelledby="enterprise-closer-heading"
+      className="mt-12 rounded-2xl border border-black/5 bg-white/70 p-6 shadow-sm sm:p-8 dark:border-white/10 dark:bg-white/5"
+    >
+      <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-wider text-brand-600 dark:text-brand-300">
+            Enterprise
+          </p>
+          <h4
+            id="enterprise-closer-heading"
+            className="mt-2 text-balance text-xl font-semibold tracking-tight sm:text-2xl"
+          >
+            Need SSO, dedicated infra, or a custom SLA?
+          </h4>
+          <p className="mt-2 max-w-2xl text-sm text-black/70 dark:text-white/70">
+            We&apos;ll scope volume, residency, and procurement on a 30-minute
+            call — typical Enterprise rollouts ship inside two weeks.
+          </p>
+        </div>
+        <a
+          href="/contact"
+          className="inline-flex shrink-0 items-center justify-center rounded-lg bg-brand-600 px-5 py-2.5 text-sm font-medium text-white shadow-sm transition hover:bg-brand-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
+        >
+          Talk to sales
+          <span aria-hidden="true" className="ml-2">
+            →
+          </span>
+        </a>
+      </div>
+    </aside>
   );
 }
 
