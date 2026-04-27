@@ -23,9 +23,14 @@ const destinations: Destination[] = [
     description: "Spin up a production-ready site in four steps.",
   },
   {
-    href: "/#features",
-    label: "Features",
-    description: "What the autonomous agent ships out of the box.",
+    href: "/demo",
+    label: "Watch a live build",
+    description: "Type a prompt; watch the agent stream its build log.",
+  },
+  {
+    href: "/templates",
+    label: "Templates",
+    description: "SaaS, portfolio, e-commerce, blog, docs — preview live.",
   },
   {
     href: "/compare",
@@ -36,11 +41,6 @@ const destinations: Destination[] = [
     href: "/docs",
     label: "Docs",
     description: "Quickstart, project structure, and deployment.",
-  },
-  {
-    href: "/blog",
-    label: "Blog",
-    description: "Build notes, post-mortems, and product updates.",
   },
   {
     href: "/case-studies",
