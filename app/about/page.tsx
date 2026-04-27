@@ -54,11 +54,41 @@ const timeline = [
   },
 ];
 
+const siteUrl = "https://ai-website-factory.example.com";
+
 export default function AboutPage() {
+  const aboutJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "@id": `${siteUrl}/about#aboutpage`,
+    name: "About AI Website Factory",
+    description:
+      "AI Website Factory is an autonomous engineering agent that plans, designs, builds, tests, and ships production-ready websites.",
+    url: `${siteUrl}/about`,
+    image: `${siteUrl}/about/opengraph-image`,
+    inLanguage: "en-US",
+    isAccessibleForFree: true,
+    mainEntity: {
+      "@type": "Organization",
+      "@id": `${siteUrl}/#organization`,
+      name: "AI Website Factory",
+      url: siteUrl,
+      logo: `${siteUrl}/favicon.svg`,
+      description:
+        "Autonomous engineering agent that plans, designs, codes, tests, and ships modern websites.",
+      slogan: "Production-ready websites, planned, designed, and shipped by AI. One PR at a time.",
+      knowsAbout: principles.map((p) => p.title),
+    },
+  };
+
   return (
     <>
       <Header />
       <main id="main">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutJsonLd) }}
+        />
         <section className="border-b border-black/5 py-16 sm:py-20 dark:border-white/10">
           <div className="container max-w-3xl">
             <p className="text-sm font-medium uppercase tracking-wider text-brand-600 dark:text-brand-300">
