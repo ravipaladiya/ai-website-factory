@@ -108,11 +108,50 @@ const sections: Section[] = [
   },
 ];
 
+const siteUrl = "https://ai-website-factory.example.com";
+
 export default function DocsPage() {
+  const techArticleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "@id": `${siteUrl}/docs#techarticle`,
+    headline: "Build, ship, and extend sites with the agent.",
+    description:
+      "Get started with AI Website Factory: install, run the agent, deploy, and extend the generated site.",
+    url: `${siteUrl}/docs`,
+    image: `${siteUrl}/docs/opengraph-image`,
+    inLanguage: "en-US",
+    isAccessibleForFree: true,
+    proficiencyLevel: "Beginner",
+    dependencies:
+      "Node.js 18+, package manager (npm / pnpm / yarn), a Next.js-compatible deploy target.",
+    audience: { "@type": "Audience", audienceType: "Developers" },
+    author: {
+      "@type": "Organization",
+      "@id": `${siteUrl}/#organization`,
+      name: "AI Website Factory",
+    },
+    publisher: {
+      "@type": "Organization",
+      "@id": `${siteUrl}/#organization`,
+      name: "AI Website Factory",
+    },
+    hasPart: sections.map((s) => ({
+      "@type": "WebPageElement",
+      name: s.title,
+      url: `${siteUrl}/docs#${s.id}`,
+      description: s.summary,
+    })),
+  };
+
   return (
     <>
       <Header />
       <main id="main">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(techArticleJsonLd) }}
+        />
         <section className="border-b border-black/5 py-16 sm:py-20 dark:border-white/10">
           <div className="container max-w-4xl">
             <Breadcrumbs
