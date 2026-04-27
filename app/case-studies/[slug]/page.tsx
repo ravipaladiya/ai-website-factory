@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ShareButton from "@/components/blog/ShareButton";
 import { caseStudies, getCaseStudy, getReview } from "@/lib/testimonials";
 
 type PageProps = { params: { slug: string } };
@@ -101,12 +102,18 @@ export default function CaseStudyPage({ params }: PageProps) {
             <p className="mt-4 text-lg text-black/70 dark:text-white/70">
               {cs.summary}
             </p>
-            <p className="mt-6 text-xs text-black/55 dark:text-white/55">
-              Live site:{" "}
-              <span className="font-mono text-black/80 dark:text-white/80">
-                {cs.siteUrl}
-              </span>
-            </p>
+            <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
+              <p className="text-xs text-black/55 dark:text-white/55">
+                Live site:{" "}
+                <span className="font-mono text-black/80 dark:text-white/80">
+                  {cs.siteUrl}
+                </span>
+              </p>
+              <ShareButton
+                title={`${cs.company} case study — ${cs.tagline}`}
+                url={canonicalUrl}
+              />
+            </div>
           </div>
         </section>
 
