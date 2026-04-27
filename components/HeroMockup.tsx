@@ -227,6 +227,7 @@ export default function HeroMockup() {
         <span aria-hidden="true" className="text-black/20 dark:text-white/20">·</span>
         <Link
           href="/templates"
+          prefetch
           className="rounded text-[11px] font-medium text-brand-700 transition hover:text-brand-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 dark:text-brand-300 dark:hover:text-brand-200"
         >
           Browse all templates <span aria-hidden="true">→</span>
