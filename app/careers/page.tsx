@@ -64,11 +64,47 @@ const roles = [
   },
 ];
 
+const siteUrl = "https://ai-website-factory.example.com";
+
 export default function CareersPage() {
+  const careersJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${siteUrl}/careers#webpage`,
+    name: "Careers at AI Website Factory",
+    description:
+      "Join AI Website Factory — we're building the autonomous engineering loop that ships production-ready websites.",
+    url: `${siteUrl}/careers`,
+    inLanguage: "en-US",
+    isAccessibleForFree: true,
+    about: {
+      "@type": "Organization",
+      "@id": `${siteUrl}/#organization`,
+      name: "AI Website Factory",
+      url: siteUrl,
+      logo: `${siteUrl}/favicon.svg`,
+    },
+    mainEntity: {
+      "@type": "ItemList",
+      name: "Open roles",
+      numberOfItems: roles.length,
+      itemListElement: roles.map((role, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        name: role.title,
+        description: role.description,
+      })),
+    },
+  };
+
   return (
     <>
       <Header />
       <main id="main">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(careersJsonLd) }}
+        />
         <section className="border-b border-black/5 py-16 sm:py-20 dark:border-white/10">
           <div className="container max-w-4xl">
             <Breadcrumbs
