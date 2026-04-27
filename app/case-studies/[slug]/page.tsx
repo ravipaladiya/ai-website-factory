@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ShareButton from "@/components/blog/ShareButton";
@@ -93,7 +94,14 @@ export default function CaseStudyPage({ params }: PageProps) {
         />
         <section className="border-b border-black/5 py-16 sm:py-20 dark:border-white/10">
           <div className="container max-w-3xl">
-            <p className="text-xs font-medium uppercase tracking-wider text-brand-600 dark:text-brand-300">
+            <Breadcrumbs
+              items={[
+                { label: "Home", href: "/" },
+                { label: "Case studies", href: "/case-studies" },
+                { label: cs.company },
+              ]}
+            />
+            <p className="mt-6 text-xs font-medium uppercase tracking-wider text-brand-600 dark:text-brand-300">
               Case study
             </p>
             <h1 className="text-balance mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">

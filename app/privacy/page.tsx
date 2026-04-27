@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
@@ -107,7 +108,10 @@ export default function PrivacyPage() {
         />
         <article className="py-16 sm:py-20">
           <div className="container max-w-3xl">
-            <header>
+            <Breadcrumbs
+              items={[{ label: "Home", href: "/" }, { label: "Privacy" }]}
+            />
+            <header className="mt-6">
               <p className="text-sm font-medium uppercase tracking-wider text-brand-600 dark:text-brand-300">
                 Legal
               </p>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { reviews, summary } from "@/lib/testimonials";
@@ -95,8 +96,13 @@ export default function TestimonialsPage() {
         />
 
         <section className="border-b border-black/5 py-16 sm:py-20 dark:border-white/10">
+          <div className="container max-w-4xl">
+            <Breadcrumbs
+              items={[{ label: "Home", href: "/" }, { label: "Testimonials" }]}
+            />
+          </div>
           <div className="container max-w-4xl text-center">
-            <p className="text-sm font-medium uppercase tracking-wider text-brand-600 dark:text-brand-300">
+            <p className="mt-6 text-sm font-medium uppercase tracking-wider text-brand-600 dark:text-brand-300">
               Testimonials
             </p>
             <h1 className="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">
