@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import UptimeChart from "@/components/status/UptimeChart";
@@ -77,7 +78,10 @@ export default function StatusPage() {
       <main id="main">
         <section className="border-b border-black/5 py-14 sm:py-16 dark:border-white/10">
           <div className="container max-w-4xl">
-            <p className="text-sm font-medium uppercase tracking-wider text-brand-600 dark:text-brand-300">
+            <Breadcrumbs
+              items={[{ label: "Home", href: "/" }, { label: "Status" }]}
+            />
+            <p className="mt-6 text-sm font-medium uppercase tracking-wider text-brand-600 dark:text-brand-300">
               Status
             </p>
             <h1 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
