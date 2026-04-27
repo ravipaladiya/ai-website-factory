@@ -1,10 +1,13 @@
 import Link from "next/link";
+import { demoTemplates } from "@/lib/demo-store";
 
 const guarantees = [
   "Free while in beta",
   "No credit card",
   "Deploy in minutes",
 ];
+
+const templateCount = demoTemplates.length;
 
 function Check() {
   return (
@@ -83,7 +86,7 @@ export default function CTA() {
               href="/templates"
               className="rounded font-medium text-white underline-offset-4 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand-700"
             >
-              browse the 5 templates
+              browse the {templateCount} templates
             </Link>{" "}
             <span aria-hidden="true">→</span>
           </p>
