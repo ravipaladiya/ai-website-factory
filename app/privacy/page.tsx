@@ -75,11 +75,36 @@ const sections = [
   },
 ];
 
+const siteUrl = "https://ai-website-factory.example.com";
+
 export default function PrivacyPage() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "PrivacyPolicy",
+    "@id": `${siteUrl}/privacy#privacypolicy`,
+    name: "Privacy Policy",
+    description:
+      "How AI Website Factory collects, uses, and protects your information.",
+    url: `${siteUrl}/privacy`,
+    inLanguage: "en-US",
+    isAccessibleForFree: true,
+    dateModified: lastUpdated,
+    isPartOf: { "@id": `${siteUrl}/#website` },
+    publisher: {
+      "@type": "Organization",
+      "@id": `${siteUrl}/#organization`,
+      name: "AI Website Factory",
+    },
+  };
+
   return (
     <>
       <Header />
       <main id="main">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <article className="py-16 sm:py-20">
           <div className="container max-w-3xl">
             <header>
