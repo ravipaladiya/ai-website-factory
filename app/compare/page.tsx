@@ -145,11 +145,46 @@ function CellValue({ value }: { value: Cell }) {
   );
 }
 
+const siteUrl = "https://ai-website-factory.example.com";
+
 export default function ComparePage() {
+  const webPageJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${siteUrl}/compare#webpage`,
+    name: "Compare AI Website Factory vs hand-rolled Next.js vs no-code builders",
+    description:
+      "A candid, side-by-side look at how the agent compares to writing Next.js by hand or using a no-code builder — across time, cost, SEO, and what you own at the end.",
+    url: `${siteUrl}/compare`,
+    image: `${siteUrl}/compare/opengraph-image`,
+    inLanguage: "en-US",
+    isAccessibleForFree: true,
+    mainEntity: {
+      "@type": "ItemList",
+      name: "Capability comparison",
+      itemListOrder: "https://schema.org/ItemListOrderAscending",
+      numberOfItems: rows.length,
+      itemListElement: rows.map((row, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        name: row.label,
+      })),
+    },
+    publisher: {
+      "@type": "Organization",
+      "@id": `${siteUrl}/#organization`,
+      name: "AI Website Factory",
+    },
+  };
+
   return (
     <>
       <Header />
       <main id="main">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageJsonLd) }}
+        />
         <section className="border-b border-black/5 py-16 sm:py-20 dark:border-white/10">
           <div className="container max-w-5xl">
             <Breadcrumbs
