@@ -28,13 +28,44 @@ function formatDate(iso: string) {
   });
 }
 
+const siteUrl = "https://ai-website-factory.example.com";
+
 export default function ChangelogPage() {
   const entries = getAllChangelogEntries();
+
+  const blogJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "@id": `${siteUrl}/changelog#blog`,
+    name: "AI Website Factory changelog",
+    description: "Weekly product updates from the AI Website Factory agent.",
+    url: `${siteUrl}/changelog`,
+    image: `${siteUrl}/changelog/opengraph-image`,
+    inLanguage: "en-US",
+    isAccessibleForFree: true,
+    publisher: {
+      "@type": "Organization",
+      "@id": `${siteUrl}/#organization`,
+      name: "AI Website Factory",
+    },
+    blogPost: entries.map((e) => ({
+      "@type": "BlogPosting",
+      headline: e.title,
+      datePublished: e.date,
+      description: e.summary,
+      url: `${siteUrl}/changelog#${e.slug}`,
+      ...(e.tags && e.tags.length > 0 ? { keywords: e.tags.join(", ") } : {}),
+    })),
+  };
 
   return (
     <>
       <Header />
       <main id="main">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(blogJsonLd) }}
+        />
         <section className="border-b border-black/5 py-16 sm:py-20 dark:border-white/10">
           <div className="container max-w-3xl">
             <Breadcrumbs
