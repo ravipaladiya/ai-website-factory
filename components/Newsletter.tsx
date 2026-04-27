@@ -67,7 +67,7 @@ export default function Newsletter() {
           </h2>
           <p className="max-w-xl text-black/70 dark:text-white/70">
             One email a month on AI website automation, SEO, and
-            shipping-velocity tactics. No spam — unsubscribe anytime.
+            shipping-velocity tactics. No spam &mdash; unsubscribe anytime.
           </p>
 
           <form
@@ -115,6 +115,17 @@ export default function Newsletter() {
             }
           >
             {message || " "}
+          </p>
+
+          <p className="text-xs text-black/55 dark:text-white/55">
+            Prefer a feed reader?{" "}
+            <a
+              href="/changelog/feed.xml"
+              className="rounded font-medium text-brand-700 underline-offset-4 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 dark:text-brand-300"
+            >
+              Subscribe via RSS
+            </a>{" "}
+            <span aria-hidden="true">&rarr;</span>
           </p>
         </div>
       </div>
