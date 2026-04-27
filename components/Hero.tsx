@@ -102,14 +102,19 @@ export default function Hero() {
         >
           {lighthouse.map((item) => (
             <li key={item.label}>
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2.5 py-0.5 text-[11px] font-medium text-emerald-800 dark:border-emerald-400/20 dark:bg-emerald-400/10 dark:text-emerald-200">
+              <span
+                className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2.5 py-0.5 text-[11px] font-medium text-emerald-800 dark:border-emerald-400/20 dark:bg-emerald-400/10 dark:text-emerald-200"
+              >
                 <span
                   aria-hidden="true"
                   className="inline-flex h-[18px] w-[18px] items-center justify-center rounded-full bg-emerald-500 text-[9px] font-semibold text-white"
                 >
                   {item.score}
                 </span>
-                <span>{item.label}</span>
+                <span aria-hidden="true">{item.label}</span>
+                <span className="sr-only">
+                  {item.label}: {item.score} of 100
+                </span>
               </span>
             </li>
           ))}
