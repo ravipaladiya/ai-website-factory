@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import type { StatsPayload } from "@/app/api/stats/route";
 
@@ -234,8 +235,15 @@ export default function StatsBanner() {
         </dl>
 
         {data && (
-          <p className="mt-6 text-center text-[10px] uppercase tracking-[0.18em] text-white/40">
-            Live · updated every 60s
+          <p className="mt-6 flex items-center justify-center gap-2 text-center text-[10px] uppercase tracking-[0.18em] text-white/40">
+            <span>Live · updated every 60s</span>
+            <span aria-hidden="true">·</span>
+            <Link
+              href="/status"
+              className="rounded text-white/60 transition hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
+            >
+              View status
+            </Link>
           </p>
         )}
       </div>
