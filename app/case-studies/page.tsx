@@ -147,6 +147,7 @@ export default function CaseStudiesIndexPage() {
               </Link>
               <Link
                 href="/templates"
+                prefetch
                 className="inline-flex items-center justify-center rounded-lg border border-black/10 bg-white px-5 py-3 text-sm font-medium text-black/80 shadow-sm transition hover:bg-black/5 dark:border-white/10 dark:bg-white/5 dark:text-white/90 dark:hover:bg-white/10"
               >
                 Browse templates →
