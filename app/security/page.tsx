@@ -128,13 +128,32 @@ export default function SecurityPage() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebPage",
+    "@id": `${siteUrl}/security#webpage`,
     name: "Security at AI Website Factory",
     description:
       "Security practices at AI Website Factory: encryption, access controls, application security, resilience, compliance, and vulnerability disclosure.",
     url: `${siteUrl}/security`,
+    image: `${siteUrl}/security/opengraph-image`,
     dateModified: lastReviewed,
     inLanguage: "en-US",
+    isAccessibleForFree: true,
     isPartOf: { "@id": `${siteUrl}/#website` },
+    publisher: {
+      "@type": "Organization",
+      "@id": `${siteUrl}/#organization`,
+      name: "AI Website Factory",
+    },
+    mainEntity: {
+      "@type": "ItemList",
+      name: "Security pillars",
+      numberOfItems: pillars.length,
+      itemListElement: pillars.map((p, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        name: p.title,
+        description: p.body,
+      })),
+    },
   };
 
   return (
