@@ -92,6 +92,7 @@ export default function HowItWorks() {
           Want to see it run?{" "}
           <Link
             href="/demo"
+            prefetch
             className="rounded font-medium text-brand-700 underline-offset-4 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 dark:text-brand-300"
           >
             Watch a live build
