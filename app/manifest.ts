@@ -39,6 +39,13 @@ export default function manifest(): MetadataRoute.Manifest {
         icons: [{ src: "/favicon.svg", sizes: "any", type: "image/svg+xml" }],
       },
       {
+        name: "Watch a live build",
+        short_name: "Live demo",
+        description: "Describe a site and watch the agent stream the build.",
+        url: "/demo",
+        icons: [{ src: "/favicon.svg", sizes: "any", type: "image/svg+xml" }],
+      },
+      {
         name: "Browse templates",
         short_name: "Templates",
         description: "SaaS landing, portfolio, e-commerce, blog, docs.",
