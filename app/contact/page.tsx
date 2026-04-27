@@ -18,11 +18,57 @@ export const metadata: Metadata = {
   },
 };
 
+const siteUrl = "https://ai-website-factory.example.com";
+
+const contactPoints = [
+  {
+    contactType: "sales",
+    email: "sales@ai-website-factory.example.com",
+  },
+  {
+    contactType: "customer support",
+    email: "support@ai-website-factory.example.com",
+  },
+  {
+    contactType: "security",
+    email: "security@ai-website-factory.example.com",
+  },
+];
+
 export default function ContactPage() {
+  const contactPageJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "@id": `${siteUrl}/contact#contactpage`,
+    name: "Contact AI Website Factory",
+    description:
+      "Talk to the AI Website Factory team about sales, partnerships, or support. We reply within one business day.",
+    url: `${siteUrl}/contact`,
+    inLanguage: "en-US",
+    isAccessibleForFree: true,
+    mainEntity: {
+      "@type": "Organization",
+      "@id": `${siteUrl}/#organization`,
+      name: "AI Website Factory",
+      url: siteUrl,
+      contactPoint: contactPoints.map((cp) => ({
+        "@type": "ContactPoint",
+        contactType: cp.contactType,
+        email: cp.email,
+        availableLanguage: "English",
+        areaServed: "Worldwide",
+      })),
+    },
+  };
+
   return (
     <>
       <Header />
       <main id="main">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(contactPageJsonLd) }}
+        />
         <section className="border-b border-black/5 py-16 sm:py-20 dark:border-white/10">
           <div className="container max-w-3xl">
             <Breadcrumbs
