@@ -31,6 +31,14 @@ const faqs = [
     q: "Are there starting templates?",
     a: "Yes. Five production-ready templates ship out of the box: SaaS landing, portfolio, e-commerce, blog, and docs. Browse and preview each at /templates — or describe what you want and the agent will build a fresh layout from scratch.",
   },
+  {
+    q: "Can I see it build something before I sign up?",
+    a: "Yes. Head to /demo, describe the site you want in one line, and watch the agent stream its build log step-by-step before it reveals a live preview. No account, no credit card — just type a prompt.",
+  },
+  {
+    q: "How often does the agent ship updates?",
+    a: "Continuously. The autonomous loop opens a new PR every time it finds something to improve — UI, SEO, performance, accessibility — and only ships when the build, lint, and tests are green. Browse what landed this week at /changelog (subscribe via RSS at /changelog/feed.xml).",
+  },
 ];
 
 export default function FAQ() {
