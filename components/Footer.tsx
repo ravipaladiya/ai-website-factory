@@ -22,7 +22,7 @@ const groups: { heading: string; links: FooterLink[] }[] = [
       { label: "Live demo", href: "/demo" },
       { label: "Blog", href: "/blog" },
       { label: "Case studies", href: "/case-studies" },
-      { label: "Examples", href: "/#testimonials" },
+      { label: "Testimonials", href: "/testimonials" },
       {
         label: "GitHub",
         href: "https://github.com/ravipaladiya/ai-website-factory",
