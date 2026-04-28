@@ -131,19 +131,24 @@ export default function Footer() {
               aria-label="Social links"
               className="mt-6 flex items-center gap-2"
             >
-              {socials.map((s) => (
-                <li key={s.label}>
-                  <a
-                    href={s.href}
-                    rel={s.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                    target={s.href.startsWith("http") ? "_blank" : undefined}
-                    aria-label={s.label}
-                    className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-black/10 bg-white/70 text-black/70 transition hover:border-brand-500/30 hover:bg-white hover:text-brand-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 dark:border-white/10 dark:bg-white/5 dark:text-white/70 dark:hover:bg-white/10 dark:hover:text-brand-200"
-                  >
-                    {s.icon}
-                  </a>
-                </li>
-              ))}
+              {socials.map((s) => {
+                const isExternal = s.href.startsWith("http");
+                return (
+                  <li key={s.label}>
+                    <a
+                      href={s.href}
+                      rel={isExternal ? "noopener noreferrer" : undefined}
+                      target={isExternal ? "_blank" : undefined}
+                      aria-label={
+                        isExternal ? `${s.label} (opens in new tab)` : s.label
+                      }
+                      className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-black/10 bg-white/70 text-black/70 transition hover:border-brand-500/30 hover:bg-white hover:text-brand-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 dark:border-white/10 dark:bg-white/5 dark:text-white/70 dark:hover:bg-white/10 dark:hover:text-brand-200"
+                    >
+                      {s.icon}
+                    </a>
+                  </li>
+                );
+              })}
             </ul>
           </div>
 
@@ -174,9 +179,34 @@ export default function Footer() {
                           href={link.href}
                           rel={link.external ? "noopener noreferrer" : undefined}
                           target={link.external ? "_blank" : undefined}
-                          className={cls}
+                          className={
+                            link.external
+                              ? cls + " inline-flex items-center gap-1"
+                              : cls
+                          }
                         >
                           {link.label}
+                          {link.external && (
+                            <>
+                              <svg
+                                viewBox="0 0 12 12"
+                                fill="none"
+                                aria-hidden="true"
+                                className="h-3 w-3 flex-none opacity-70"
+                              >
+                                <path
+                                  d="M4 2.5h5.5V8M9.25 2.75 3 9"
+                                  stroke="currentColor"
+                                  strokeWidth="1.25"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                />
+                              </svg>
+                              <span className="sr-only">
+                                (opens in new tab)
+                              </span>
+                            </>
+                          )}
                         </a>
                       )}
                     </li>
