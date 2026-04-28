@@ -134,7 +134,12 @@ export default function SecurityPage() {
     description:
       "Security practices at AI Website Factory: encryption, access controls, application security, resilience, compliance, and vulnerability disclosure.",
     url: `${siteUrl}/security`,
-    image: `${siteUrl}/security/opengraph-image`,
+    image: {
+      "@type": "ImageObject",
+      url: `${siteUrl}/security/opengraph-image`,
+      width: 1200,
+      height: 630,
+    },
     dateModified: lastReviewed,
     inLanguage: "en-US",
     isAccessibleForFree: true,

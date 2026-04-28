@@ -119,7 +119,12 @@ export default function DocsPage() {
     description:
       "Get started with AI Website Factory: install, run the agent, deploy, and extend the generated site.",
     url: `${siteUrl}/docs`,
-    image: `${siteUrl}/docs/opengraph-image`,
+    image: {
+      "@type": "ImageObject",
+      url: `${siteUrl}/docs/opengraph-image`,
+      width: 1200,
+      height: 630,
+    },
     inLanguage: "en-US",
     isAccessibleForFree: true,
     proficiencyLevel: "Beginner",
