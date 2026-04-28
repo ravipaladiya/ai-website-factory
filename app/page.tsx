@@ -26,6 +26,14 @@ const softwareApplicationJsonLd = {
     "Autonomous engineering agent that plans, designs, builds, tests, and ships production-ready websites.",
   applicationCategory: "WebApplication",
   operatingSystem: "Any (browser-based)",
+  // Tie the SoftwareApplication entity to the home OG card; the
+  // /opengraph-image route declares 1200x630.
+  image: {
+    "@type": "ImageObject",
+    url: `${siteUrl}/opengraph-image`,
+    width: 1200,
+    height: 630,
+  },
   offers: [
     {
       "@type": "Offer",
