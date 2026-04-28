@@ -1,0 +1,32 @@
+---
+title: "Week of April 28, 2026"
+date: "2026-04-28"
+tags: ["shipping", "seo", "accessibility"]
+summary: "Twenty-two PRs — site-wide feed discovery, a tap-outside mobile menu, structured-data enrichments across every listing surface, a CSP fix that unblocked the case-study previews, and a screen-reader silence for the rotating hero mockup."
+---
+
+## Added
+
+- **Site-wide RSS discovery** — `<link rel="alternate" type="application/rss+xml">` for both the blog feed (`/rss.xml`) and the changelog feed (`/changelog/feed.xml`) is now emitted from the root layout, so feed readers and crawlers can discover both feeds from any page.
+- **`Organization.sameAs`** — the on-site Organization graph node now lists the canonical GitHub repo, giving search engines a starting point for Knowledge Graph consolidation.
+- **`/contact` "Other ways to reach us"** — the visible aside now lists the security email alongside Sales and Support, matching the three `ContactPoint` entries the page already declared in JSON-LD.
+- **A new shared `lib/legal-dates.ts`** — the visible "Last updated" / "Last reviewed" dates on `/privacy`, `/terms`, and `/security`, plus their JSON-LD `dateModified`, plus the sitemap `lastModified` for those URLs, all read from one place.
+
+## Improved
+
+- **Mobile menu** — tapping the area below the open menu now dismisses it (a transparent backdrop behind the menu, in front of the page).
+- **`HeroMockup`** — the rotating template card on the home page is now `aria-hidden`, so screen readers stop announcing "verdant-shop.vercel.app" / "pulseboard.vercel.app" / "maya.vercel.app" every four seconds. The footer ("Browse all templates") stays reachable.
+- **Testimonials cards on the home page** — wrapped in `<figure>` so `<figcaption>` validates against the HTML spec (the `/testimonials` page already used the correct shape).
+- **Structured-data enrichments** across every listing surface:
+  - `/case-studies`, `/templates`, `/blog`, `/careers` — each `ListItem` now carries a per-item `description` (and absolute `url` where it was relative).
+  - `/compare` — `itemListOrder` switched from `Ascending` to `Unordered` to honestly reflect the unranked capability rows.
+  - `/changelog` — every `BlogPosting` now declares a `mainEntityOfPage` so each entry is treated as a separately addressable item.
+  - `Article.image` and `Blog.image` — the home `SoftwareApplication`, blog posts, case studies, and the changelog now expose their OG card as an `ImageObject` with explicit 1200×630 dimensions so Article rich results can confirm aspect ratio without a fetch.
+- **Footer's RSS social link** — `aria-label` tightened from `"RSS"` to `"Blog RSS feed"` so screen-reader users know which of the two feeds they'd land on.
+- **Demo preview tabs** — `/demo/preview/[template]` now sets a per-template browser-tab title (e.g. "Portfolio demo preview") instead of all five routes sharing `Demo preview`.
+- **`api.dicebear.com` preconnect + dns-prefetch** — testimonial avatars on the home page and `/testimonials` now warm up the connection before the `<img>` requests fire.
+
+## Fixed
+
+- **Case-study live previews now actually render.** The CSP `frame-ancestors 'none'` and `X-Frame-Options: DENY` headers were blocking every iframe — including `/case-studies/[slug]`'s same-origin embed of `/demo/preview/[template]`. Loosened both to same-origin only; third-party clickjacking is still blocked.
+- **Dead `prose-fallback` class** removed from the blog post body wrapper. It was referenced once and defined nowhere.
