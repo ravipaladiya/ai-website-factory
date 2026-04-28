@@ -265,6 +265,7 @@ export default function DocsPage() {
                 className="inline-flex items-center justify-center rounded-lg border border-black/10 bg-white px-4 py-2 text-sm font-medium text-black/80 shadow-sm transition hover:bg-black/5 dark:border-white/10 dark:bg-white/5 dark:text-white/90 dark:hover:bg-white/10"
               >
                 Open an issue
+                <span className="sr-only">(opens in new tab)</span>
               </a>
               <Link
                 href="/contact"

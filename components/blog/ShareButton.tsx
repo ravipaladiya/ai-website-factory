@@ -22,6 +22,7 @@ export default function ShareButton({
         <path d="M18.244 2h3.308l-7.227 8.26L23 22h-6.828l-5.346-6.99L4.7 22H1.39l7.73-8.835L1 2h6.994l4.833 6.39L18.244 2zm-1.16 18h1.834L7.01 3.885H5.04L17.084 20z" />
       </svg>
       Share on X
+      <span className="sr-only">(opens in new tab)</span>
     </a>
   );
 }
