@@ -1,5 +1,10 @@
 import type { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/posts";
+import {
+  privacyLastUpdated,
+  securityLastReviewed,
+  termsLastUpdated,
+} from "@/lib/legal-dates";
 import { caseStudies } from "@/lib/testimonials";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -68,19 +73,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${siteUrl}/security`,
-      lastModified: new Date(),
+      lastModified: new Date(securityLastReviewed),
       changeFrequency: "monthly",
       priority: 0.6,
     },
     {
       url: `${siteUrl}/privacy`,
-      lastModified: new Date(),
+      lastModified: new Date(privacyLastUpdated),
       changeFrequency: "yearly",
       priority: 0.3,
     },
     {
       url: `${siteUrl}/terms`,
-      lastModified: new Date(),
+      lastModified: new Date(termsLastUpdated),
       changeFrequency: "yearly",
       priority: 0.3,
     },
