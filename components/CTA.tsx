@@ -84,6 +84,7 @@ export default function CTA() {
             Or{" "}
             <Link
               href="/templates"
+              prefetch
               className="rounded font-medium text-white underline-offset-4 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand-700"
             >
               browse the {templateCount} templates
