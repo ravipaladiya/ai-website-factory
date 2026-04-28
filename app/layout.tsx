@@ -84,6 +84,13 @@ const jsonLd = {
       name: "AI Website Factory",
       url: siteUrl,
       logo: `${siteUrl}/favicon.svg`,
+      // Same description used by the AboutPage's mainEntity Organization
+      // node (app/about/page.tsx) so any consumer that ingests the
+      // canonical Organization @id sees the same brand pitch.
+      description:
+        "Autonomous engineering agent that plans, designs, codes, tests, and ships modern websites.",
+      slogan:
+        "Production-ready websites, planned, designed, and shipped by AI. One PR at a time.",
       // sameAs ties this Organization entity to its external profiles so
       // search engines can build a Knowledge Graph node for the brand.
       // Discord/Twitter URLs in the footer are still placeholders, so only
