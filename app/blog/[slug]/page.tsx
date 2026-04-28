@@ -70,7 +70,18 @@ export default function BlogPostPage({ params }: PageProps) {
     "@type": "Article",
     headline: post.title,
     description: post.excerpt,
-    image: [ogImageUrl],
+    // Wrap the OG URL in an ImageObject with explicit dimensions so
+    // Google's Article rich-result eligibility check (which prefers
+    // image+width+height over a bare URL) can confirm aspect ratio.
+    // The /blog/[slug]/opengraph-image route emits exactly 1200x630.
+    image: [
+      {
+        "@type": "ImageObject",
+        url: ogImageUrl,
+        width: 1200,
+        height: 630,
+      },
+    ],
     datePublished: post.date,
     dateModified: post.date,
     keywords: post.tags.join(", "),
