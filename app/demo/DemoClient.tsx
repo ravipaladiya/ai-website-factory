@@ -344,30 +344,35 @@ export default function DemoClient({
             </p>
           )}
 
-          {stage === "ready" && readyTemplate && (
-            <section
-              aria-label="Generated preview"
-              className="overflow-hidden rounded-2xl border border-black/5 bg-white shadow-xl dark:border-white/10 dark:bg-black/40"
-            >
-              <div className="flex items-center gap-2 border-b border-black/5 bg-neutral-50 px-3 py-2 dark:border-white/10 dark:bg-[#11152a]">
-                <span className="flex items-center gap-1.5" aria-hidden="true">
-                  <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
-                  <span className="h-3 w-3 rounded-full bg-[#febc2e]" />
-                  <span className="h-3 w-3 rounded-full bg-[#28c840]" />
-                </span>
-                <span className="ml-2 truncate text-xs text-black/60 dark:text-white/60">
-                  preview · {readyTemplate}
-                </span>
-              </div>
-              <iframe
-                title={`Preview of ${readyTemplate} template`}
-                src={`/demo/preview/${readyTemplate}`}
-                sandbox="allow-same-origin"
-                loading="lazy"
-                className="aspect-[16/10] w-full bg-white dark:bg-[#0b0e1a]"
-              />
-            </section>
-          )}
+          {stage === "ready" && readyTemplate && (() => {
+            const readyLabel =
+              demoTemplates.find((t) => t.id === readyTemplate)?.label ??
+              readyTemplate;
+            return (
+              <section
+                aria-label="Generated preview"
+                className="overflow-hidden rounded-2xl border border-black/5 bg-white shadow-xl dark:border-white/10 dark:bg-black/40"
+              >
+                <div className="flex items-center gap-2 border-b border-black/5 bg-neutral-50 px-3 py-2 dark:border-white/10 dark:bg-[#11152a]">
+                  <span className="flex items-center gap-1.5" aria-hidden="true">
+                    <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
+                    <span className="h-3 w-3 rounded-full bg-[#febc2e]" />
+                    <span className="h-3 w-3 rounded-full bg-[#28c840]" />
+                  </span>
+                  <span className="ml-2 truncate text-xs text-black/60 dark:text-white/60">
+                    preview · {readyLabel}
+                  </span>
+                </div>
+                <iframe
+                  title={`Preview of ${readyLabel} template`}
+                  src={`/demo/preview/${readyTemplate}`}
+                  sandbox="allow-same-origin"
+                  loading="lazy"
+                  className="aspect-[16/10] w-full bg-white dark:bg-[#0b0e1a]"
+                />
+              </section>
+            );
+          })()}
 
           <div className="flex flex-col items-center justify-between gap-3 border-t border-black/5 pt-5 sm:flex-row dark:border-white/10">
             <div className="flex flex-wrap items-center gap-2">
