@@ -95,6 +95,11 @@ const jsonLd = {
       "@id": `${siteUrl}/#website`,
       url: siteUrl,
       name: "AI Website Factory",
+      // Match the <meta name="description"> on the home page so the
+      // WebSite entity carries the same one-line pitch the rest of the
+      // SEO surface advertises.
+      description:
+        "AI Website Factory designs, builds, and ships production-ready, SEO-optimized websites automatically. Modern stack, responsive by default.",
       publisher: { "@id": `${siteUrl}/#organization` },
       inLanguage: "en-US",
     },
