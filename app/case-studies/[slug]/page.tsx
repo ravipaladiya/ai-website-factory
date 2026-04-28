@@ -65,7 +65,15 @@ export default function CaseStudyPage({ params }: PageProps) {
     about: cs.company,
     mainEntityOfPage: { "@type": "WebPage", "@id": canonicalUrl },
     url: canonicalUrl,
-    image: `${canonicalUrl}/opengraph-image`,
+    // ImageObject + dimensions: matches the /case-studies/[slug]/
+    // opengraph-image route's declared 1200x630 size and lets Article
+    // rich-result inspectors confirm aspect ratio without a fetch.
+    image: {
+      "@type": "ImageObject",
+      url: `${canonicalUrl}/opengraph-image`,
+      width: 1200,
+      height: 630,
+    },
     inLanguage: "en-US",
     isAccessibleForFree: true,
     author: {
