@@ -142,7 +142,7 @@ export default function BlogPostPage({ params }: PageProps) {
                 </div>
               </header>
 
-              <div className="prose-fallback mt-8 max-w-prose">
+              <div className="mt-8 max-w-prose">
                 <MDXContent source={post.raw} />
               </div>
 
