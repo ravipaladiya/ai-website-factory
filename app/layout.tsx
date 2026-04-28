@@ -118,6 +118,17 @@ export default function RootLayout({
     <html lang="en" className={inter.variable} suppressHydrationWarning>
       <head>
         <ThemeScript />
+        {/* Pre-warm the connection used by testimonial avatars on the home
+            page Testimonials section and the /testimonials masonry. dicebear
+            is a third-party SVG host, so a TLS+TCP handshake before the
+            <img> requests fire shaves real time off the visible avatar grid.
+            preconnect + dns-prefetch is the standard fallback pair. */}
+        <link
+          rel="preconnect"
+          href="https://api.dicebear.com"
+          crossOrigin="anonymous"
+        />
+        <link rel="dns-prefetch" href="https://api.dicebear.com" />
         {/* Site-wide RSS discovery: kept as raw <link> tags so per-page
             metadata.alternates (which replaces the parent's alternates
             wholesale in Next.js) doesn't clobber feed discovery. */}
