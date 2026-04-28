@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useReducer } from "react";
+import { useEffect, useReducer, useRef, useState } from "react";
 
 type Slide = {
   label: string;
@@ -140,18 +140,57 @@ function reducer(state: number) {
 
 export default function HeroMockup() {
   const [index, tick] = useReducer(reducer, 0);
+  const cardRef = useRef<HTMLDivElement | null>(null);
+  // Combine "tab visible" and "card on screen" so we don't burn cycles
+  // (or animate underneath the user) when neither is true. Both default
+  // to true so SSR + first paint advance the slide as before.
+  const [rotating, setRotating] = useState(true);
 
   useEffect(() => {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduced) return;
+
+    let visible = !document.hidden;
+    let inView = true;
+
+    const update = () => setRotating(visible && inView);
+
+    const onVisibility = () => {
+      visible = !document.hidden;
+      update();
+    };
+    document.addEventListener("visibilitychange", onVisibility);
+
+    let observer: IntersectionObserver | undefined;
+    const node = cardRef.current;
+    if (node && "IntersectionObserver" in window) {
+      observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) inView = entry.isIntersecting;
+          update();
+        },
+        { threshold: 0.1 },
+      );
+      observer.observe(node);
+    }
+
+    return () => {
+      document.removeEventListener("visibilitychange", onVisibility);
+      observer?.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced || !rotating) return;
     const id = window.setInterval(tick, INTERVAL_MS);
     return () => window.clearInterval(id);
-  }, []);
+  }, [rotating]);
 
   const active = slides[index];
 
   return (
-    <div className="mx-auto w-full max-w-xl sm:max-w-2xl">
+    <div ref={cardRef} className="mx-auto w-full max-w-xl sm:max-w-2xl">
       {/*
         The mockup card (browser chrome + rotating slides + label badge)
         is purely decorative. The host-bar previously announced the
