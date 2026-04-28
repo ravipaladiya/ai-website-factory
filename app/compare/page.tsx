@@ -156,7 +156,12 @@ export default function ComparePage() {
     description:
       "A candid, side-by-side look at how the agent compares to writing Next.js by hand or using a no-code builder — across time, cost, SEO, and what you own at the end.",
     url: `${siteUrl}/compare`,
-    image: `${siteUrl}/compare/opengraph-image`,
+    image: {
+      "@type": "ImageObject",
+      url: `${siteUrl}/compare/opengraph-image`,
+      width: 1200,
+      height: 630,
+    },
     inLanguage: "en-US",
     isAccessibleForFree: true,
     mainEntity: {
