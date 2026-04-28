@@ -69,6 +69,7 @@ export default function BlogIndexPage({
   const [hero, ...rest] = filtered;
   const recent = rest.slice(0, 6);
 
+  const siteUrl = "https://ai-website-factory.example.com";
   const itemListJsonLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",
@@ -78,8 +79,12 @@ export default function BlogIndexPage({
     itemListElement: filtered.slice(0, 20).map((p, i) => ({
       "@type": "ListItem",
       position: i + 1,
-      url: `/blog/${p.slug}`,
+      // Absolute URL: relative paths in JSON-LD don't reliably resolve in
+      // every rich-result/crawler tool, even when the same-origin assumption
+      // is "obvious."
+      url: `${siteUrl}/blog/${p.slug}`,
       name: p.title,
+      description: p.excerpt,
     })),
   };
 
