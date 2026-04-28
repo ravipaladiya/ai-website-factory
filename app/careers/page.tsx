@@ -75,6 +75,14 @@ export default function CareersPage() {
     description:
       "Join AI Website Factory — we're building the autonomous engineering loop that ships production-ready websites.",
     url: `${siteUrl}/careers`,
+    // Tie the WebPage entity to the OG card; the route at
+    // app/careers/opengraph-image.tsx declares 1200x630.
+    image: {
+      "@type": "ImageObject",
+      url: `${siteUrl}/careers/opengraph-image`,
+      width: 1200,
+      height: 630,
+    },
     inLanguage: "en-US",
     isAccessibleForFree: true,
     about: {
