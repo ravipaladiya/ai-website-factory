@@ -77,6 +77,10 @@ export default function StickyMobileCTA() {
         </div>
         <Link
           href="/new"
+          // The wrapper is aria-hidden + pointer-events-none while
+          // hidden, so block keyboard focus on the link too -- otherwise
+          // a Tab user could land on an invisible CTA mid-page.
+          tabIndex={visible ? 0 : -1}
           className="shrink-0 rounded-lg bg-brand-600 px-4 py-2 text-sm font-medium text-white shadow-sm transition hover:bg-brand-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
         >
           Start free
