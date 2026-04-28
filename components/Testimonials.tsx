@@ -154,6 +154,10 @@ export default function Testimonials() {
               key={r.id}
               className="flex flex-col rounded-2xl border border-black/5 bg-white/70 p-6 shadow-sm dark:border-white/10 dark:bg-white/5"
             >
+              {/* <figure> wraps the quote + author so <figcaption> has the
+                  parent the HTML spec requires. /testimonials uses the same
+                  shape; the home page was bare-<li> which is invalid. */}
+              <figure className="flex flex-1 flex-col">
               <Stars value={r.rating} />
               <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-black/80 dark:text-white/80">
                 &ldquo;{r.quote}&rdquo;
@@ -175,6 +179,7 @@ export default function Testimonials() {
                   </p>
                 </div>
               </figcaption>
+              </figure>
               {r.caseStudySlug && (
                 <Link
                   href={`/case-studies/${r.caseStudySlug}`}
