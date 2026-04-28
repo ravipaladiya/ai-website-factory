@@ -83,6 +83,11 @@ const jsonLd = {
       name: "AI Website Factory",
       url: siteUrl,
       logo: `${siteUrl}/favicon.svg`,
+      // sameAs ties this Organization entity to its external profiles so
+      // search engines can build a Knowledge Graph node for the brand.
+      // Discord/Twitter URLs in the footer are still placeholders, so only
+      // the canonical GitHub repo is listed here for now.
+      sameAs: ["https://github.com/ravipaladiya/ai-website-factory"],
     },
     {
       "@type": "WebSite",
