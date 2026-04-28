@@ -34,6 +34,7 @@ export default function CaseStudiesIndexPage() {
       position: i + 1,
       url: `${siteUrl}/case-studies/${cs.slug}`,
       name: `${cs.company} — ${cs.tagline}`,
+      description: cs.summary,
     })),
   };
 
