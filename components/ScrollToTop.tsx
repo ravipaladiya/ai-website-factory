@@ -37,6 +37,11 @@ export default function ScrollToTop() {
       type="button"
       onClick={scrollToTop}
       aria-label="Back to top"
+      // Keep the element rendered (for the opacity transition) but hide
+      // it from AT and the tab order while it's invisible -- otherwise a
+      // screen reader's virtual cursor surfaces a "Back to top" button
+      // even when the user is at the top of the page.
+      aria-hidden={!visible}
       tabIndex={visible ? 0 : -1}
       className={
         (visible
