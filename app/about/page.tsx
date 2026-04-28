@@ -66,7 +66,15 @@ export default function AboutPage() {
     description:
       "AI Website Factory is an autonomous engineering agent that plans, designs, builds, tests, and ships production-ready websites.",
     url: `${siteUrl}/about`,
-    image: `${siteUrl}/about/opengraph-image`,
+    // Tie the AboutPage entity to the OG card with explicit dimensions
+    // (mirrors the SoftwareApplication / Article JSON-LD pattern). The
+    // route declares size {1200, 630}.
+    image: {
+      "@type": "ImageObject",
+      url: `${siteUrl}/about/opengraph-image`,
+      width: 1200,
+      height: 630,
+    },
     inLanguage: "en-US",
     isAccessibleForFree: true,
     mainEntity: {
