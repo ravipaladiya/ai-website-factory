@@ -162,7 +162,9 @@ export default function ComparePage() {
     mainEntity: {
       "@type": "ItemList",
       name: "Capability comparison",
-      itemListOrder: "https://schema.org/ItemListOrderAscending",
+      // Capabilities aren't ranked best-to-worst; the row order is editorial,
+      // not a sort. ItemListUnordered is the honest signal here.
+      itemListOrder: "https://schema.org/ItemListUnordered",
       numberOfItems: rows.length,
       itemListElement: rows.map((row, i) => ({
         "@type": "ListItem",
