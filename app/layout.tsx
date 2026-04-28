@@ -113,6 +113,21 @@ export default function RootLayout({
     <html lang="en" className={inter.variable} suppressHydrationWarning>
       <head>
         <ThemeScript />
+        {/* Site-wide RSS discovery: kept as raw <link> tags so per-page
+            metadata.alternates (which replaces the parent's alternates
+            wholesale in Next.js) doesn't clobber feed discovery. */}
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          href="/rss.xml"
+          title="AI Website Factory — Blog"
+        />
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          href="/changelog/feed.xml"
+          title="AI Website Factory — Changelog"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
