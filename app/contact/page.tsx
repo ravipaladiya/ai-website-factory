@@ -124,6 +124,27 @@ export default function ContactPage() {
                   </dd>
                 </div>
                 <div>
+                  <dt className="font-medium">Security</dt>
+                  <dd className="mt-1 text-black/70 dark:text-white/70">
+                    <a
+                      href="mailto:security@ai-website-factory.example.com"
+                      className="hover:text-brand-600 dark:hover:text-brand-300"
+                    >
+                      security@ai-website-factory.example.com
+                    </a>
+                    <span className="block text-xs text-black/55 dark:text-white/55">
+                      Vulnerability disclosure — see{" "}
+                      <a
+                        href="/security"
+                        className="underline-offset-4 hover:text-brand-700 hover:underline dark:hover:text-brand-300"
+                      >
+                        /security
+                      </a>{" "}
+                      for our policy.
+                    </span>
+                  </dd>
+                </div>
+                <div>
                   <dt className="font-medium">Response time</dt>
                   <dd className="mt-1 text-black/70 dark:text-white/70">
                     Within one business day, Mon–Fri.
