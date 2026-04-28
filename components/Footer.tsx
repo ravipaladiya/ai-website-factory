@@ -81,7 +81,11 @@ const socials: SocialLink[] = [
     ),
   },
   {
-    label: "RSS",
+    // Two RSS feeds exist (blog at /rss.xml, changelog at
+    // /changelog/feed.xml). The icon points at the blog feed by
+    // convention; spell that out so screen-reader users aren't
+    // guessing which one they'd land on.
+    label: "Blog RSS feed",
     href: "/rss.xml",
     icon: (
       <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" className="h-4 w-4">
