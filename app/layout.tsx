@@ -83,7 +83,17 @@ const jsonLd = {
       "@id": `${siteUrl}/#organization`,
       name: "AI Website Factory",
       url: siteUrl,
-      logo: `${siteUrl}/favicon.svg`,
+      // Per Google's Organization-logo guidance, an ImageObject with
+      // explicit dimensions surfaces a stronger logo signal than a bare
+      // string. The asset at /favicon.svg has viewBox 0 0 32 32 -- the
+      // declared dimensions are square at any rendered size.
+      logo: {
+        "@type": "ImageObject",
+        url: `${siteUrl}/favicon.svg`,
+        width: 32,
+        height: 32,
+        caption: "AI Website Factory logo",
+      },
       // Same description used by the AboutPage's mainEntity Organization
       // node (app/about/page.tsx) so any consumer that ingests the
       // canonical Organization @id sees the same brand pitch.
