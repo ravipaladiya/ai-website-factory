@@ -77,6 +77,11 @@ type CounterProps = {
 function Counter({ target, format, start, durationMs = 1400, reducedMotion }: CounterProps) {
   const [value, setValue] = useState(reducedMotion ? target : 0);
   const rafRef = useRef<number | null>(null);
+  // Latest rendered value, read at animation start so a target change
+  // mid-animation (e.g. placeholder → real /api/stats data) tweens from
+  // the current on-screen value instead of snapping back to 0.
+  const valueRef = useRef(value);
+  valueRef.current = value;
 
   useEffect(() => {
     if (!start) return;
@@ -86,8 +91,9 @@ function Counter({ target, format, start, durationMs = 1400, reducedMotion }: Co
     }
 
     const startAt = performance.now();
-    const from = 0;
+    const from = valueRef.current;
     const to = target;
+    if (from === to) return;
 
     function frame(now: number) {
       const t = Math.min(1, (now - startAt) / durationMs);
