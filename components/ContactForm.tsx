@@ -4,6 +4,10 @@ import { useState } from "react";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
+// Order matters: must match the visual top-to-bottom order of fields so
+// validation focuses the *first* error on the page.
+const FIELD_ORDER = ["name", "email", "message"] as const;
+
 export default function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [errors, setErrors] = useState<{ [k: string]: string }>({});
@@ -24,7 +28,12 @@ export default function ContactForm() {
 
     setErrors(next);
     if (Object.keys(next).length > 0) {
-      setStatus("idle");
+      setStatus("error");
+      const firstInvalid = FIELD_ORDER.find((f) => next[f]);
+      if (firstInvalid) {
+        const el = form.elements.namedItem(firstInvalid);
+        if (el instanceof HTMLElement) el.focus();
+      }
       return;
     }
 
@@ -33,6 +42,8 @@ export default function ContactForm() {
     setStatus("success");
     form.reset();
   }
+
+  const errorCount = Object.keys(errors).length;
 
   if (status === "success") {
     return (
@@ -64,6 +75,23 @@ export default function ContactForm() {
       className="space-y-5"
       aria-label="Contact form"
     >
+      {/* Empty live region while idle so screen readers don't announce
+          "0 errors" on first paint; only renders + announces when the
+          submit handler fills `errors`. */}
+      <p
+        role="alert"
+        aria-live="assertive"
+        className={
+          status === "error" && errorCount > 0
+            ? "rounded-lg border border-red-500/20 bg-red-50 px-3 py-2 text-xs font-medium text-red-700 dark:border-red-400/20 dark:bg-red-500/10 dark:text-red-300"
+            : "sr-only"
+        }
+      >
+        {status === "error" && errorCount > 0
+          ? `Please fix ${errorCount === 1 ? "1 error" : `${errorCount} errors`} below.`
+          : ""}
+      </p>
+
       <div>
         <label htmlFor="name" className="block text-sm font-medium">
           Name
