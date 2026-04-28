@@ -41,7 +41,12 @@ export default function ChangelogPage() {
     name: "AI Website Factory changelog",
     description: "Weekly product updates from the AI Website Factory agent.",
     url: `${siteUrl}/changelog`,
-    image: `${siteUrl}/changelog/opengraph-image`,
+    image: {
+      "@type": "ImageObject",
+      url: `${siteUrl}/changelog/opengraph-image`,
+      width: 1200,
+      height: 630,
+    },
     inLanguage: "en-US",
     isAccessibleForFree: true,
     ...(latestEntryDate ? { dateModified: latestEntryDate } : {}),
