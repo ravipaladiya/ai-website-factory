@@ -93,6 +93,11 @@ export default function CareersPage() {
         position: i + 1,
         name: role.title,
         description: role.description,
+        // No per-role page exists; the canonical destination for any role
+        // is /careers itself, where the full description and Apply CTA
+        // live. Listing it lets crawlers and rich-result tools surface a
+        // working URL when they render this ItemList.
+        url: `${siteUrl}/careers`,
       })),
     },
   };
