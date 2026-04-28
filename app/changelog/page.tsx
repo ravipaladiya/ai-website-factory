@@ -56,6 +56,14 @@ export default function ChangelogPage() {
       datePublished: e.date,
       description: e.summary,
       url: `${siteUrl}/changelog#${e.slug}`,
+      // Each entry's canonical "page" is the changelog with this slug as
+      // the in-page anchor — there are no per-entry routes. Naming it
+      // explicitly lets crawlers treat the BlogPosting as separately
+      // addressable rather than a free-floating sub-entity.
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": `${siteUrl}/changelog#${e.slug}`,
+      },
       ...(e.tags && e.tags.length > 0 ? { keywords: e.tags.join(", ") } : {}),
     })),
   };
