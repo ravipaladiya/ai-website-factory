@@ -54,6 +54,7 @@ export default function BuildPage({
               className="inline-flex w-full items-center justify-center rounded-lg bg-brand-600 px-5 py-2.5 text-sm font-medium text-white shadow-sm transition hover:bg-brand-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 sm:w-auto"
             >
               Open the live site →
+              <span className="sr-only">(opens in new tab)</span>
             </a>
           )}
           <Link
