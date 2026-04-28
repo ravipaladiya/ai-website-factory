@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/posts";
+import { getAllChangelogEntries } from "@/lib/changelog";
 import {
   privacyLastUpdated,
   securityLastReviewed,
@@ -9,6 +10,12 @@ import { caseStudies } from "@/lib/testimonials";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const siteUrl = "https://ai-website-factory.example.com";
+
+  const posts = getAllPosts();
+  const changelogEntries = getAllChangelogEntries();
+  // Both helpers return entries sorted newest-first.
+  const latestPostDate = posts[0]?.date;
+  const latestChangelogDate = changelogEntries[0]?.date;
 
   const staticRoutes: MetadataRoute.Sitemap = [
     {
@@ -31,7 +38,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${siteUrl}/blog`,
-      lastModified: new Date(),
+      lastModified: latestPostDate ? new Date(latestPostDate) : new Date(),
       changeFrequency: "weekly",
       priority: 0.8,
     },
@@ -43,7 +50,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${siteUrl}/changelog`,
-      lastModified: new Date(),
+      lastModified: latestChangelogDate
+        ? new Date(latestChangelogDate)
+        : new Date(),
       changeFrequency: "weekly",
       priority: 0.6,
     },
@@ -109,7 +118,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  const postRoutes: MetadataRoute.Sitemap = getAllPosts().map((post) => ({
+  const postRoutes: MetadataRoute.Sitemap = posts.map((post) => ({
     url: `${siteUrl}/blog/${post.slug}`,
     lastModified: new Date(post.date),
     changeFrequency: "monthly",
