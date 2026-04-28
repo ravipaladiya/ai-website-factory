@@ -44,6 +44,14 @@ export default function ContactPage() {
     description:
       "Talk to the AI Website Factory team about sales, partnerships, or support. We reply within one business day.",
     url: `${siteUrl}/contact`,
+    // Tie the ContactPage entity to the OG card; the route at
+    // app/contact/opengraph-image.tsx declares 1200x630.
+    image: {
+      "@type": "ImageObject",
+      url: `${siteUrl}/contact/opengraph-image`,
+      width: 1200,
+      height: 630,
+    },
     inLanguage: "en-US",
     isAccessibleForFree: true,
     mainEntity: {
