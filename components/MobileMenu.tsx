@@ -53,6 +53,15 @@ export default function MobileMenu({ links }: { links: Link[] }) {
       </button>
 
       {open && (
+        <>
+          {/* Tap outside the menu to dismiss. Sits below the menu (z-30 vs.
+              z-40) and starts under the sticky header so the header's close
+              button stays clickable. */}
+          <div
+            aria-hidden="true"
+            onClick={() => setOpen(false)}
+            className="fixed inset-x-0 bottom-0 top-16 z-30 bg-black/30 backdrop-blur-sm md:hidden"
+          />
         <div
           id="mobile-menu"
           role="dialog"
@@ -111,6 +120,7 @@ export default function MobileMenu({ links }: { links: Link[] }) {
             </div>
           </nav>
         </div>
+        </>
       )}
     </div>
   );
