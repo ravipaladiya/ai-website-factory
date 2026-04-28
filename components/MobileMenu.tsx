@@ -9,14 +9,50 @@ export default function MobileMenu({ links }: { links: Link[] }) {
   const [open, setOpen] = useState(false);
   const firstLinkRef = useRef<HTMLAnchorElement | null>(null);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
+  const dialogRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (!open) return;
+
+    function focusableInDialog(): HTMLElement[] {
+      const root = dialogRef.current;
+      if (!root) return [];
+      // The menu only contains <a> and (no rendered) <button>s, but be
+      // generous so future controls work too.
+      return Array.from(
+        root.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+        ),
+      ).filter((el) => !el.hasAttribute("aria-hidden"));
+    }
 
     function onKey(e: KeyboardEvent) {
       if (e.key === "Escape") {
         setOpen(false);
         buttonRef.current?.focus();
+        return;
+      }
+      if (e.key !== "Tab") return;
+
+      // Wrap focus inside the dialog so Tab / Shift+Tab don't escape
+      // back to the rest of the page (which is visually obscured by
+      // the backdrop and aria-modal-irrelevant).
+      const items = focusableInDialog();
+      if (items.length === 0) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+      const activeEl = document.activeElement as HTMLElement | null;
+
+      if (e.shiftKey) {
+        if (activeEl === first || !dialogRef.current?.contains(activeEl)) {
+          e.preventDefault();
+          last.focus();
+        }
+      } else {
+        if (activeEl === last) {
+          e.preventDefault();
+          first.focus();
+        }
       }
     }
 
@@ -63,6 +99,7 @@ export default function MobileMenu({ links }: { links: Link[] }) {
             className="fixed inset-x-0 bottom-0 top-16 z-30 bg-black/30 backdrop-blur-sm md:hidden"
           />
         <div
+          ref={dialogRef}
           id="mobile-menu"
           role="dialog"
           aria-modal="true"
