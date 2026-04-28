@@ -52,9 +52,20 @@ export default function TestimonialsPage() {
     "@context": "https://schema.org",
     "@type": "Product",
     name: "AI Website Factory",
-    url: siteUrl,
+    // Anchor the Product to the testimonials page (the entity that
+    // hosts the AggregateRating + Reviews), not the bare site root.
+    url: `${siteUrl}/testimonials`,
     description:
       "Autonomous engineering agent that plans, designs, builds, tests, and ships production-ready websites.",
+    // Google's Product rich-results guidance lists `image` as recommended
+    // for AggregateRating eligibility. Tie it to the OG card route at
+    // /testimonials/opengraph-image (size 1200x630 declared by the route).
+    image: {
+      "@type": "ImageObject",
+      url: `${siteUrl}/testimonials/opengraph-image`,
+      width: 1200,
+      height: 630,
+    },
     brand: {
       "@type": "Brand",
       name: "AI Website Factory",
