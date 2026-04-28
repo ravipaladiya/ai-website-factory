@@ -32,12 +32,15 @@ export default function ReadingProgress() {
   }, []);
 
   return (
+    // The scroll-progress bar is purely decorative -- a thin gradient at
+    // the top of long /blog/[slug] pages. Previously it advertised
+    // role="progressbar" + aria-valuenow, which (a) misuses progressbar
+    // (that role is for actionable, time-bound processes) and (b) made
+    // some screen readers announce "12 percent ... 14 percent ..." on
+    // every rAF tick. Hide it from AT entirely; sighted users still see
+    // the visual cue, and SR users have the in-page TOC for orientation.
     <div
-      role="progressbar"
-      aria-label="Reading progress"
-      aria-valuemin={0}
-      aria-valuemax={100}
-      aria-valuenow={Math.round(progress)}
+      aria-hidden="true"
       className="pointer-events-none fixed left-0 right-0 top-0 z-[60] h-0.5 bg-transparent"
     >
       <div
