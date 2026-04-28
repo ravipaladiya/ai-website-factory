@@ -3,10 +3,11 @@ import Link from "next/link";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { securityLastReviewed } from "@/lib/legal-dates";
 
 const siteUrl = "https://ai-website-factory.example.com";
 const securityEmail = "security@ai-website-factory.example.com";
-const lastReviewed = "2026-04-01";
+const lastReviewed = securityLastReviewed;
 
 export const metadata: Metadata = {
   title: "Security",

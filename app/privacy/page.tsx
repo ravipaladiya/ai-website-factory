@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { privacyLastUpdated } from "@/lib/legal-dates";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
@@ -21,7 +22,7 @@ export const metadata: Metadata = {
   },
 };
 
-const lastUpdated = "2026-04-23";
+const lastUpdated = privacyLastUpdated;
 
 const sections = [
   {
