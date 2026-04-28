@@ -116,6 +116,7 @@ export default function TemplatesPage() {
       position: i + 1,
       url: `${siteUrl}/demo/preview/${id}`,
       name: templateLabel(id),
+      description: templateMeta[id].tagline,
     })),
   };
 
