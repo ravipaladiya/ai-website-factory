@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import Providers from "@/components/Providers";
 import ScrollToTop from "@/components/ScrollToTop";
+import SkipToContent from "@/components/SkipToContent";
 import ThemeScript from "@/components/ThemeScript";
 import "./globals.css";
 
@@ -150,12 +151,7 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen font-sans">
-        <a
-          href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-brand-600 focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-white focus:shadow-lg focus:outline-none"
-        >
-          Skip to content
-        </a>
+        <SkipToContent />
         <Providers>
           {children}
           <ScrollToTop />
