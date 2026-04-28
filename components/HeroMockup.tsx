@@ -152,7 +152,19 @@ export default function HeroMockup() {
 
   return (
     <div className="mx-auto w-full max-w-xl sm:max-w-2xl">
-      <div className="relative overflow-hidden rounded-xl border border-black/10 bg-white shadow-2xl shadow-brand-900/10 ring-1 ring-black/5 dark:border-white/10 dark:bg-[#0b0e1a] dark:ring-white/10">
+      {/*
+        The mockup card (browser chrome + rotating slides + label badge)
+        is purely decorative. The host-bar previously announced the
+        active slide's host every INTERVAL_MS (4s) via role=status +
+        aria-live=polite, which floods screen readers without giving
+        them any real navigation context. Hide the whole card from AT;
+        the footer below (template dots + 'Browse all templates') stays
+        reachable for keyboard / screen-reader users.
+      */}
+      <div
+        aria-hidden="true"
+        className="relative overflow-hidden rounded-xl border border-black/10 bg-white shadow-2xl shadow-brand-900/10 ring-1 ring-black/5 dark:border-white/10 dark:bg-[#0b0e1a] dark:ring-white/10"
+      >
         <div className="flex items-center gap-3 border-b border-black/5 bg-gradient-to-b from-neutral-50 to-neutral-100 px-3 py-2 dark:border-white/10 dark:from-[#1a1f35] dark:to-[#11152a]">
           <div className="flex items-center gap-1.5" aria-hidden="true">
             <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
@@ -171,8 +183,6 @@ export default function HeroMockup() {
 
           <div
             className="flex flex-1 items-center justify-center gap-1.5 rounded-md border border-black/5 bg-white/80 px-2.5 py-1 text-[11px] text-black/60 shadow-inner dark:border-white/10 dark:bg-black/30 dark:text-white/60"
-            role="status"
-            aria-live="polite"
           >
             <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" className="h-3 w-3 text-emerald-500">
               <path d="M7 10l-2 2-2-2m4-3V5a3 3 0 0 1 6 0v2m-6 0h6a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
