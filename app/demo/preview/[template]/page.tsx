@@ -1,14 +1,29 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { demoTemplateIds, type DemoTemplateId } from "@/lib/demo-store";
+import {
+  demoTemplateIds,
+  demoTemplates,
+  type DemoTemplateId,
+} from "@/lib/demo-store";
 
 export function generateStaticParams() {
   return demoTemplateIds.map((t) => ({ template: t }));
 }
 
-export const metadata = {
-  title: "Demo preview",
-  robots: { index: false, follow: false },
-};
+export function generateMetadata({
+  params,
+}: {
+  params: { template: string };
+}): Metadata {
+  const t = demoTemplates.find((d) => d.id === params.template);
+  // Per-template tab title — generic 'Demo preview' was identical across
+  // all five preview routes, which made open-in-new-tab + multi-tab
+  // workflows unusable. Routes are still robots: noindex/nofollow.
+  return {
+    title: t ? `${t.label} demo preview` : "Demo preview",
+    robots: { index: false, follow: false },
+  };
+}
 
 function Ecommerce() {
   const products = [
