@@ -65,7 +65,7 @@ export default function Sidebar() {
           aria-hidden="true"
           className="inline-block h-6 w-6 rounded-md bg-gradient-to-br from-brand-400 to-brand-700 shadow-sm"
         />
-        <span className="text-sm">AI Website Factory</span>
+        <span className="font-display text-sm">AI Website Factory</span>
       </Link>
 
       <nav aria-label="Dashboard" className="mt-8">
@@ -82,15 +82,15 @@ export default function Sidebar() {
                   aria-current={active ? "page" : undefined}
                   className={
                     (active
-                      ? "bg-brand-50 text-brand-800 dark:bg-brand-500/15 dark:text-brand-100"
+                      ? "bg-brand-600 text-white shadow-sm shadow-brand-600/20"
                       : "text-black/70 hover:bg-black/5 hover:text-black dark:text-white/70 dark:hover:bg-white/5 dark:hover:text-white") +
-                    " flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
+                    " flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
                   }
                 >
                   <span
                     className={
                       active
-                        ? "text-brand-700 dark:text-brand-200"
+                        ? "text-white"
                         : "text-black/50 dark:text-white/50"
                     }
                   >

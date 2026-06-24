@@ -14,6 +14,9 @@ import Newsletter from "@/components/Newsletter";
 import Footer from "@/components/Footer";
 import StickyMobileCTA from "@/components/StickyMobileCTA";
 import { reviews, summary as reviewSummary } from "@/lib/testimonials";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
+import { authOptions } from "@/lib/auth";
 
 const siteUrl = "https://ai-website-factory.example.com";
 
@@ -117,7 +120,11 @@ const softwareApplicationJsonLd = {
   },
 };
 
-export default function HomePage() {
+export default async function HomePage() {
+  const session = await getServerSession(authOptions);
+  if (session?.user) {
+    redirect("/dashboard");
+  }
   return (
     <>
       <script

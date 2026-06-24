@@ -38,7 +38,7 @@ export default function Topbar({ title, user }: Props) {
   return (
     <header className="sticky top-0 z-30 border-b border-black/5 bg-white/70 backdrop-blur-md dark:border-white/10 dark:bg-black/40">
       <div className="flex h-14 items-center gap-3 px-4 sm:px-6">
-        <h1 className="flex-1 truncate text-base font-semibold tracking-tight">
+        <h1 className="flex-1 truncate font-display text-base font-semibold tracking-tight">
           {resolvedTitle}
         </h1>
 
